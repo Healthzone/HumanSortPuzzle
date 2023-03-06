@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ColorConstants : MonoBehaviour
 {
+    public static Color NoColor = Color.white;
     public static Color RedColor = Color.red;
     public static Color GreenColor = Color.green;
     public static Color BlueColor = Color.blue;

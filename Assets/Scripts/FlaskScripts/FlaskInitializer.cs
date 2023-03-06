@@ -67,10 +67,10 @@ public class FlaskInitializer : MonoBehaviour
         }
 
         BuildNavMeshPath(spawnedGround);
-        StartInitializeBots(spawnedFlasks);
+        StartInitializingBots(spawnedFlasks);
     }
 
-    private void StartInitializeBots(GameObject[] flasks)
+    private void StartInitializingBots(GameObject[] flasks)
     {
         BotInitializer initializer = GetComponent<BotInitializer>();
         initializer.Initialize(flasks);

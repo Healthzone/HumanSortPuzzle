@@ -7,27 +7,29 @@ public class RandomBotColorGenerator
 {
     private int _botsCount;
 
-    private Colors[] botColors;
+    private Colors[] _botColors;
 
     public RandomBotColorGenerator(int flaskCount)
     {
         _botsCount = flaskCount * 4;
-        botColors = new Colors[_botsCount];
+        _botColors = new Colors[_botsCount];
     }
 
-    public void GenerateRandomColor()
+    public Colors[] GenerateRandomColor()
     {
 
         for (int i = 0; i < _botsCount; i++)
         {
-            botColors[i] = SelectCurrentColor(i);
-            Debug.Log($"Bot {i} has {botColors[i]} color");
+            _botColors[i] = SelectCurrentColor(i);
+            //Debug.Log($"Bot {i} has {botColors[i]} color");
         }
+        ShuffleArray();
+        return _botColors;
     }
 
     private Colors SelectCurrentColor(int indexElement)
     {
-        int colorIndex = indexElement / (_botsCount / 4);
+        int colorIndex = indexElement / 4;
         switch (colorIndex)
         {
             case 0:
@@ -49,22 +51,21 @@ public class RandomBotColorGenerator
         }
     }
 
-    private Colors[] ShuffleArray()
+    private void ShuffleArray()
     {
         System.Random rnd = new System.Random();
-        for (int i = 0; i < botColors.Length - 2; i++)
+        for (int i = 0; i < _botColors.Length - 2; i++)
         {
-            int newIndex = i + rnd.Next(botColors.Length - i);
+            int newIndex = i + rnd.Next(_botColors.Length - i);
             SwapElements(i, newIndex);
         }
-        return botColors;
     }
 
     private void SwapElements(int oldIndex, int newIndex)
     {
-        var temp = botColors[oldIndex];
-        botColors[oldIndex] = botColors[newIndex];
-        botColors[newIndex] = temp;
+        var temp = _botColors[oldIndex];
+        _botColors[oldIndex] = _botColors[newIndex];
+        _botColors[newIndex] = temp;
     }
 
 }
