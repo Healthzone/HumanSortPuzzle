@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ca0856c868e034a82ee2d2ae65bb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flaskCount: 5
+  flaskCount: 7
   flaskRowCount: 5
   groundPrefab: {fileID: 755424215410949054, guid: a80048aae45336f49a58d69d67d61f1d,
     type: 3}

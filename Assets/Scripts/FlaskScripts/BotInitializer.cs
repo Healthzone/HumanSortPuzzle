@@ -67,7 +67,7 @@ public class BotInitializer : MonoBehaviour
     {
         foreach (var bot in bots)
         {
-            bot.SpawnedBot.GetComponent<Renderer>().material.color =SelectColorConstant(bot.BotColor);
+            bot.SpawnedBot.GetComponent<Renderer>().material.color = SelectColorConstant(bot.BotColor);
         }
     }
 
