@@ -40,6 +40,7 @@ public class BotInitializer : MonoBehaviour
             flaskCount++;
         }
         SetBotColor();
+        GlobalEvents.SendBotsInitialized();
     }
 
     private void IntstantiateBots(GameObject flask, int flaskCount)

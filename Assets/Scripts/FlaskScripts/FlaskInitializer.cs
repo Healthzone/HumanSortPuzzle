@@ -65,7 +65,8 @@ public class FlaskInitializer : MonoBehaviour
             }
             spawnedFlasks[i] = Instantiate(flaskPrefab, spawnPosition, flaskPrefab.transform.rotation, spawnedGround.transform);
         }
-
+        GlobalEvents.SendFlaskInitialized();
+        StartInitializingCamera(spawnedFlasks);
         BuildNavMeshPath(spawnedGround);
         StartInitializingBots(spawnedFlasks);
     }
@@ -74,6 +75,11 @@ public class FlaskInitializer : MonoBehaviour
     {
         BotInitializer initializer = GetComponent<BotInitializer>();
         initializer.Initialize(flasks);
+    }
+    private void StartInitializingCamera(GameObject[] flasks)
+    {
+        CameraInitializer cameraInitializer = GetComponent<CameraInitializer>();
+        cameraInitializer.InitializeCameraPositionAndRotation(flasks);
     }
 
     private void BuildNavMeshPath(GameObject surface)
