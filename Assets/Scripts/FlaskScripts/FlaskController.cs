@@ -6,14 +6,17 @@ using UnityEngine.AI;
 
 public class FlaskController : MonoBehaviour
 {
-    [SerializeField] private Color[] colors;
+    private Stack<Color> colors = new Stack<Color>();
 
+    private GameObject flaskPlane;
+
+    public GameObject FlaskPlane { get => flaskPlane;}
+    public Stack<Color> Colors { get => colors;}
 
     private void Awake()
     {
         GlobalEvents.OnBotsInitialized.AddListener(InitializeComponent);
 
-        colors = new Color[4];
     }
     private void OnDisable()
     {
@@ -25,8 +28,9 @@ public class FlaskController : MonoBehaviour
         var bots = transform.GetComponentsInChildren<NavMeshAgent>();
         for (int i = 0; i < bots.Length; i++)
         {
-            colors[i] = bots[i].GetComponent<MeshRenderer>().material.color;
+            colors.Push(bots[i].GetComponent<MeshRenderer>().material.color);
         }
+        flaskPlane = transform.Find("Plane").gameObject;
         GlobalEvents.SendFlaskControllerInitialized();
     }
 }

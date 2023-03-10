@@ -45,10 +45,12 @@ public class BotInitializer : MonoBehaviour
 
     private void IntstantiateBots(GameObject flask, int flaskCount)
     {
+        //Получаем позиции колбы для расстановки
         var spawnPositions = flask.GetComponentsInChildren<Transform>();
 
         for (int i = 1; i <= spawnPositions.Length - 1; i++)
         {
+            //Расставляем ботов по колбам
             bots[i - 1 + (flaskCount * 4)].SpawnedBot = Instantiate(botPrefab, spawnPositions[i].position, Quaternion.identity, spawnPositions[i]);
         }
     }
