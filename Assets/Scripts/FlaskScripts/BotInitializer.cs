@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BotInitializer : MonoBehaviour
@@ -9,8 +11,11 @@ public class BotInitializer : MonoBehaviour
     private Colors[] botGeneratedColors;
     private Bot[] bots;
 
+    private Material[] colors;
+
     public void Initialize(GameObject[] flasks)
     {
+        colors = GetComponent<ColorConstants>().BotsMaterial;
         bots = new Bot[(flasks.Length - 2) * 4];
 
         for (int i = 0; i < bots.Length; i++)
@@ -70,30 +75,31 @@ public class BotInitializer : MonoBehaviour
     {
         foreach (var bot in bots)
         {
-            bot.SpawnedBot.GetComponent<Renderer>().material.color = SelectColorConstant(bot.BotColor);
+            //MaterialPropertyBlock propertyBlock = 
+            bot.SpawnedBot.GetComponent<Renderer>().sharedMaterial = SelectColorConstant(bot.BotColor);
         }
     }
 
-    private Color SelectColorConstant(Colors color)
+    private Material SelectColorConstant(Colors color)
     {
         switch (color)
         {
             case Colors.Red:
-                return ColorConstants.RedColor;
+                return colors[0];
             case Colors.Green:
-                return ColorConstants.GreenColor;
+                return colors[1];
             case Colors.Blue:
-                return ColorConstants.BlueColor;
+                return colors[2];
             case Colors.Yellow:
-                return ColorConstants.YellowColor;
+                return colors[3];
             case Colors.Pink:
-                return ColorConstants.PinkColor;
+                return colors[4];
             case Colors.Orange:
-                return ColorConstants.OrangeColor;
+                return colors[5];
             case Colors.Cyan:
-                return ColorConstants.CyanColor;
+                return colors[6];
             default:
-                return ColorConstants.NoColor;
+                throw new Exception("Ќе удалось определить материал бота");
         }
     }
 }

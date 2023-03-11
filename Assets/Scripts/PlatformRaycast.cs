@@ -2,19 +2,21 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86;
 
 public class PlatformRaycast : MonoBehaviour
 {
     [SerializeField] private LayerMask raycastLayer;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float colorShowDuration = 0.5f;
+    [SerializeField] private GameObject flaskHighlighter;
 
+    [SerializeField] private FlaskController selectedFlaskController;
     private RaycastHit hit;
 
     private MaterialPropertyBlock _propBlock;
     private Renderer _renderer;
 
-    private FlaskController selectedFlaskController;
 
     private Color nullColor = new Color(0, 0, 0, 0);
 
@@ -26,7 +28,8 @@ public class PlatformRaycast : MonoBehaviour
             Ray castPoint = mainCamera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, raycastLayer))
             {
-                HighlightPlane(hit);
+                SelectFlask(hit);
+
                 //_renderer = hit.transform.gameObject.GetComponent<Renderer>();
                 //_renderer.material.color = GetRandomColor();
 
@@ -36,26 +39,47 @@ public class PlatformRaycast : MonoBehaviour
     }
 
 
-    private void HighlightPlane(RaycastHit hit)
+    private void SelectFlask(RaycastHit hit)
     {
-        if (selectedFlaskController != null)
-        {
-            selectedFlaskController.FlaskPlane.SetActive(false);
-        }
-        selectedFlaskController = hit.transform.GetComponent<FlaskController>();
+        var hitFlask = hit.transform.GetComponent<FlaskController>();
 
+        if (hitFlask.Colors.Count == 0 && selectedFlaskController == null)
+        {
+            return;
+        }
+        if (selectedFlaskController == null)
+        {
+            selectedFlaskController = hit.transform.GetComponent<FlaskController>();
+            HighlightFlaskPlane();
+        }
+        if (selectedFlaskController != null && hitFlask != selectedFlaskController)
+        {
+            TryTranslateBots();
+        }
+
+    }
+
+    private void HighlightFlaskPlane()
+    {
         selectedFlaskController.Colors.TryPeek(out Color result);
         if (result != nullColor)
         {
-            selectedFlaskController.FlaskPlane.SetActive(true);
-            var material = selectedFlaskController.FlaskPlane.GetComponent<MeshRenderer>().sharedMaterial;
+            flaskHighlighter.SetActive(true);
+            flaskHighlighter.transform.position = selectedFlaskController.GetComponent<Renderer>().bounds.center;
+            var material = flaskHighlighter.GetComponent<MeshRenderer>().sharedMaterial;
             material.color = Color.black;
             material.DOColor(result, colorShowDuration);
-                
-
-
         }
     }
+
+    private void TryTranslateBots()
+    {
+        Debug.Log("Я перемещаюсь");
+        selectedFlaskController = null;
+        flaskHighlighter.SetActive(false);
+
+    }
+
     private Color GetRandomColor()
     {
         return new Color(
