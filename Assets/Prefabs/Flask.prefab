@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: -4870770153484795877}
   - component: {fileID: 4847354343667623513}
   - component: {fileID: 8476942168953664292}
+  - component: {fileID: 3733299197007791034}
   m_Layer: 6
   m_Name: Flask
   m_TagString: Untagged
@@ -283,6 +284,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.426543, y: 0.68960667, z: 5.2803993}
   m_Center: {x: -5.9222035, y: 1, z: 0.0052563637}
+--- !u!65 &3733299197007791034
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748222393500023823}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.410368, y: 2.500482, z: 2.607142}
+  m_Center: {x: -5.9936213, y: 0.9054361, z: 2.2555627e-14}
 --- !u!1 &7989940529860113492
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,15 @@ using UnityEngine.AI;
 public class FlaskController : MonoBehaviour
 {
     private Stack<Color> colors = new Stack<Color>();
-    private Stack<Transform> flaskPositions = new Stack<Transform>();
+    private Queue<Transform> flaskPositions = new Queue<Transform>();
+    private Stack<GameObject> bots = new Stack<GameObject>();
 
     private GameObject flaskPlane;
 
     public GameObject FlaskPlane { get => flaskPlane; }
     public Stack<Color> Colors { get => colors; }
+    public Stack<GameObject> Bots { get => bots; }
+    public Queue<Transform> FlaskPositions { get => flaskPositions; set => flaskPositions = value; }
 
     private void Awake()
     {
@@ -28,15 +31,29 @@ public class FlaskController : MonoBehaviour
     {
         InitializeStackColor();
         InitializeFlaskPositions();
+        InitializeBotPositions();
         GlobalEvents.SendFlaskControllerInitialized();
+    }
+
+    private void InitializeBotPositions()
+    {
+        for (int i = 0; i < gameObject.transform.childCount - 1; i++)
+        {
+            if (gameObject.transform.GetChild(i).childCount == 0)
+                continue;
+            GameObject child = gameObject.transform.GetChild(i).GetChild(0).gameObject;
+            bots.Push(child);
+        }
     }
 
     private void InitializeFlaskPositions()
     {
         var positions = transform.GetComponentsInChildren<Transform>();
-        for (int i = 1; i <= positions.Length-1; i++)
+        if (gameObject.transform.GetChild(0).childCount != 0)
+            return;
+        for (int i = 1; i <= positions.Length - 1; i++)
         {
-            flaskPositions.Push(positions[i]);
+            flaskPositions.Enqueue(positions[i]);
         }
     }
 
@@ -49,4 +66,14 @@ public class FlaskController : MonoBehaviour
         }
         flaskPlane = transform.Find("Plane").gameObject;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Bot")
+        {
+
+        }
+    }
+
+
 }

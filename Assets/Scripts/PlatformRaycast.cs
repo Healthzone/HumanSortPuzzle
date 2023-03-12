@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using static Unity.Burst.Intrinsics.X86;
 
 public class PlatformRaycast : MonoBehaviour
@@ -13,10 +14,6 @@ public class PlatformRaycast : MonoBehaviour
 
     [SerializeField] private FlaskController selectedFlaskController;
     private RaycastHit hit;
-
-    private MaterialPropertyBlock _propBlock;
-    private Renderer _renderer;
-
 
     private Color nullColor = new Color(0, 0, 0, 0);
 
@@ -43,18 +40,21 @@ public class PlatformRaycast : MonoBehaviour
     {
         var hitFlask = hit.transform.GetComponent<FlaskController>();
 
+        //Пытаемся выбрать пустую колбу
         if (hitFlask.Colors.Count == 0 && selectedFlaskController == null)
         {
             return;
         }
+        //Выбираем первый раз колбу
         if (selectedFlaskController == null)
         {
             selectedFlaskController = hit.transform.GetComponent<FlaskController>();
             HighlightFlaskPlane();
         }
+        //Выбираем вторую колбу и пытаемся переместить ботов
         if (selectedFlaskController != null && hitFlask != selectedFlaskController)
         {
-            TryTranslateBots();
+            TryTranslateBots(hitFlask.gameObject);
         }
 
     }
@@ -72,9 +72,29 @@ public class PlatformRaycast : MonoBehaviour
         }
     }
 
-    private void TryTranslateBots()
+    private void TryTranslateBots(GameObject secondFlask)
     {
         Debug.Log("Я перемещаюсь");
+
+        var poppedBot = selectedFlaskController.Bots.Pop();
+        var poppedColor = selectedFlaskController.Colors.Pop();
+
+        var secondFlaskController = secondFlask.GetComponent<FlaskController>();
+        secondFlaskController.Bots.Push(poppedBot);
+        secondFlaskController.Colors.Push(poppedColor);
+        var toPos = secondFlaskController.FlaskPositions.Dequeue();
+        Debug.Log(toPos.position);
+
+        selectedFlaskController.FlaskPositions.Enqueue(poppedBot.transform.parent);
+        if (selectedFlaskController.FlaskPositions.Count > 1)
+        {
+            
+        }
+
+        poppedBot.transform.SetParent(toPos);
+        poppedBot.GetComponent<NavMeshAgent>().SetDestination(toPos.position);
+
+
         selectedFlaskController = null;
         flaskHighlighter.SetActive(false);
 
