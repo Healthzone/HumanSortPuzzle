@@ -15,7 +15,8 @@ public class BotInitializer : MonoBehaviour
 
     public void Initialize(GameObject[] flasks)
     {
-        colors = GetComponent<ColorConstants>().BotsMaterial;
+        var colorsConstant = GetComponent<ColorConstants>();
+        colors = colorsConstant.BotsMaterial;
         bots = new Bot[(flasks.Length - 2) * 4];
 
         for (int i = 0; i < bots.Length; i++)

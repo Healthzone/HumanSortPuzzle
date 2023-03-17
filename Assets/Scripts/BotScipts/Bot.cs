@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class Bot
 
     public Bot()
     {
-
     }
     public Bot(GameObject spawnedBot, Colors botColor)
     {

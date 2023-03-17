@@ -1,21 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class FlaskController : MonoBehaviour
 {
     private Stack<Color> colors = new Stack<Color>();
-    private Queue<Transform> flaskPositions = new Queue<Transform>();
+    [SerializeField] private Transform[] flaskPositions = new Transform[4];
     private Stack<GameObject> bots = new Stack<GameObject>();
 
     private GameObject flaskPlane;
 
+    [SerializeField] private int nextEmptyPositionIndex = -1;
+
     public GameObject FlaskPlane { get => flaskPlane; }
     public Stack<Color> Colors { get => colors; }
     public Stack<GameObject> Bots { get => bots; }
-    public Queue<Transform> FlaskPositions { get => flaskPositions; set => flaskPositions = value; }
+    public Transform[] FlaskPositions { get => flaskPositions; set => flaskPositions = value; }
+    public int NextEmptyPositionIndex { get => nextEmptyPositionIndex; }
 
     private void Awake()
     {
@@ -48,13 +52,18 @@ public class FlaskController : MonoBehaviour
 
     private void InitializeFlaskPositions()
     {
-        var positions = transform.GetComponentsInChildren<Transform>();
-        if (gameObject.transform.GetChild(0).childCount != 0)
-            return;
-        for (int i = 1; i <= positions.Length - 1; i++)
+        var positions = transform.GetComponentsInChildren<Transform>().Where(x => !x.gameObject.CompareTag("Bot")).ToArray();
+
+        if (gameObject.transform.GetChild(0).childCount == 0)
+            nextEmptyPositionIndex = 0;
+        else 
+            nextEmptyPositionIndex = 4;
+
+        for (int i = 1; i < positions.Length; i++)
         {
-            flaskPositions.Enqueue(positions[i]);
+            flaskPositions[i - 1] = positions[i];
         }
+
     }
 
     private void InitializeStackColor()
@@ -62,18 +71,42 @@ public class FlaskController : MonoBehaviour
         var bots = transform.GetComponentsInChildren<NavMeshAgent>();
         for (int i = 0; i < bots.Length; i++)
         {
-            colors.Push(bots[i].GetComponent<MeshRenderer>().material.color);
+            colors.Push(bots[i].GetComponent<Renderer>().material.color);
         }
         flaskPlane = transform.Find("Plane").gameObject;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ProcessBotPosition(GameObject bot)
     {
-        if(other.tag == "Bot")
-        {
+        colors.Push(bot.GetComponent<Renderer>().material.color);
+        bots.Push(bot);
 
-        }
+        Transform position = flaskPositions[nextEmptyPositionIndex];
+        ShiftNextPositionIndex(1);
+
+        bot.transform.SetParent(position.transform);
+
+        bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
     }
 
-
+    /// <summary>
+    /// Этот метод сдвигает указатель на текущую свободную 
+    /// позицию фласки.
+    /// </summary>
+    /// <param name="mode">0 - позиция освободилась. 1 - позиция занялась</param>
+    public void ShiftNextPositionIndex(int mode)
+    {
+        if (mode == 0)
+        {
+            nextEmptyPositionIndex--;
+            if (nextEmptyPositionIndex == -1)
+                nextEmptyPositionIndex = 3;
+        }
+        else if (mode == 1)
+        {
+            nextEmptyPositionIndex++;
+            if (nextEmptyPositionIndex == 4)
+                nextEmptyPositionIndex = 0;
+        }
+    }
 }

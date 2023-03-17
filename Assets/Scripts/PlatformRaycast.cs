@@ -77,22 +77,19 @@ public class PlatformRaycast : MonoBehaviour
         Debug.Log("Я перемещаюсь");
 
         var poppedBot = selectedFlaskController.Bots.Pop();
-        var poppedColor = selectedFlaskController.Colors.Pop();
+        selectedFlaskController.Colors.Pop();
 
         var secondFlaskController = secondFlask.GetComponent<FlaskController>();
-        secondFlaskController.Bots.Push(poppedBot);
-        secondFlaskController.Colors.Push(poppedColor);
-        var toPos = secondFlaskController.FlaskPositions.Dequeue();
-        Debug.Log(toPos.position);
+        //secondFlaskController.Bots.Push(poppedBot);
+        //secondFlaskController.Colors.Push(poppedColor);
+        var pos = secondFlaskController.GetComponent<Renderer>().bounds.center;
+        //var toPos = secondFlaskController.FlaskPositions.Pop();
+        selectedFlaskController.ShiftNextPositionIndex(0);
 
-        selectedFlaskController.FlaskPositions.Enqueue(poppedBot.transform.parent);
-        if (selectedFlaskController.FlaskPositions.Count > 1)
-        {
-            
-        }
-
-        poppedBot.transform.SetParent(toPos);
-        poppedBot.GetComponent<NavMeshAgent>().SetDestination(toPos.position);
+        secondFlaskController.ProcessBotPosition(poppedBot);
+        
+        //poppedBot.transform.SetParent(toPos);
+        //poppedBot.GetComponent<NavMeshAgent>().SetDestination(pos);
 
 
         selectedFlaskController = null;
