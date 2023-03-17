@@ -49,8 +49,12 @@ public class PlatformRaycast : MonoBehaviour
         //Выбираем первый раз колбу
         if (selectedFlaskController == null)
         {
-            selectedFlaskController = hit.transform.GetComponent<FlaskController>();
-            HighlightFlaskPlane();
+            var flaskController = hit.transform.GetComponent<FlaskController>();
+            if (!flaskController.IsFilledByOneColor)
+            {
+                selectedFlaskController = flaskController;
+                HighlightFlaskPlane();
+            }
         }
         //Выбираем вторую колбу и пытаемся переместить ботов
         if (selectedFlaskController != null && hitFlask != selectedFlaskController)

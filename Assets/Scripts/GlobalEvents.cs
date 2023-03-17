@@ -8,6 +8,7 @@ public class GlobalEvents : MonoBehaviour
     public static UnityEvent OnFlasksInitialized = new UnityEvent();
     public static UnityEvent OnBotsInitialized = new UnityEvent();
     public static UnityEvent OnFlaskControllerInitialized = new UnityEvent();
+    public static UnityEvent OnFlaskFilledByOneColor = new UnityEvent();
 
     public static void SendFlaskInitialized()
     {
@@ -22,6 +23,9 @@ public class GlobalEvents : MonoBehaviour
     {
         OnFlaskControllerInitialized.Invoke();
     }
-
+    public static void SendFlaskFilledByOneColor()
+    {
+        OnFlaskFilledByOneColor.Invoke();
+    }
 
 }

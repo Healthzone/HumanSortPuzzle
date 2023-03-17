@@ -22,6 +22,9 @@ public class FlaskInitializer : MonoBehaviour
     [SerializeField] private float offsetZ = -15f;
 
     [SerializeField] private GameObject[] spawnedFlasks;
+
+    public int FlaskCount { get => flaskCount;}
+
     void Start()
     {
         InitializeFlasks();

@@ -7,19 +7,24 @@ using UnityEngine.AI;
 
 public class FlaskController : MonoBehaviour
 {
-    private Stack<Color> colors = new Stack<Color>();
     [SerializeField] private Transform[] flaskPositions = new Transform[4];
+    [SerializeField] private int nextEmptyPositionIndex = -1;
+
+    private Stack<Color> colors = new Stack<Color>();
     private Stack<GameObject> bots = new Stack<GameObject>();
 
     private GameObject flaskPlane;
 
-    [SerializeField] private int nextEmptyPositionIndex = -1;
+    private bool isFilledByOneColor = false;
 
+    #region Properties
     public GameObject FlaskPlane { get => flaskPlane; }
     public Stack<Color> Colors { get => colors; }
     public Stack<GameObject> Bots { get => bots; }
-    public Transform[] FlaskPositions { get => flaskPositions; set => flaskPositions = value; }
+    public Transform[] FlaskPositions { get => flaskPositions; }
     public int NextEmptyPositionIndex { get => nextEmptyPositionIndex; }
+    public bool IsFilledByOneColor { get => isFilledByOneColor; }
+    #endregion
 
     private void Awake()
     {
@@ -56,7 +61,7 @@ public class FlaskController : MonoBehaviour
 
         if (gameObject.transform.GetChild(0).childCount == 0)
             nextEmptyPositionIndex = 0;
-        else 
+        else
             nextEmptyPositionIndex = 4;
 
         for (int i = 1; i < positions.Length; i++)
@@ -76,6 +81,23 @@ public class FlaskController : MonoBehaviour
         flaskPlane = transform.Find("Plane").gameObject;
     }
 
+    private bool CheckFlaskColorFill()
+    {
+        Color firstColor;
+        IEnumerator<Color> enumerator = colors.GetEnumerator();
+        enumerator.MoveNext();
+        firstColor = enumerator.Current;
+
+        int sameColors = 1;
+        while (enumerator.MoveNext())
+        {
+            if (firstColor != enumerator.Current)
+                return false;
+            sameColors++;
+        }
+        return sameColors == 4 ? true : false;
+    }
+
     /// <summary>
     /// Этот метод перемещает бота на свободную позицию фласки
     /// </summary>
@@ -92,6 +114,10 @@ public class FlaskController : MonoBehaviour
         bot.transform.SetParent(position.transform);
 
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
+
+        isFilledByOneColor = CheckFlaskColorFill();
+        if (isFilledByOneColor)
+            GlobalEvents.SendFlaskFilledByOneColor();
 
         return Bots.Count == 4 ? false : true;
     }
