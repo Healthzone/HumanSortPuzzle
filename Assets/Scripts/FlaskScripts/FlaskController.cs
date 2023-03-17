@@ -76,7 +76,12 @@ public class FlaskController : MonoBehaviour
         flaskPlane = transform.Find("Plane").gameObject;
     }
 
-    public void ProcessBotPosition(GameObject bot)
+    /// <summary>
+    /// Этот метод перемещает бота на свободную позицию фласки
+    /// </summary>
+    /// <param name="bot">Перемещаемый бот</param>
+    /// <returns>Возвращает true, если есть свободное место для следующего бота</returns>
+    public bool ProcessBotPosition(GameObject bot)
     {
         colors.Push(bot.GetComponent<Renderer>().material.color);
         bots.Push(bot);
@@ -87,13 +92,15 @@ public class FlaskController : MonoBehaviour
         bot.transform.SetParent(position.transform);
 
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
+
+        return Bots.Count == 4 ? false : true;
     }
 
     /// <summary>
     /// Этот метод сдвигает указатель на текущую свободную 
     /// позицию фласки.
     /// </summary>
-    /// <param name="mode">0 - позиция освободилась. 1 - позиция занялась</param>
+    /// <param name="mode">0 - занять место. 1 - освободить место</param>
     public void ShiftNextPositionIndex(int mode)
     {
         if (mode == 0)

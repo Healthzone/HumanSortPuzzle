@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static Unity.Burst.Intrinsics.X86;
@@ -74,27 +75,36 @@ public class PlatformRaycast : MonoBehaviour
 
     private void TryTranslateBots(GameObject secondFlask)
     {
-        Debug.Log("Я перемещаюсь");
-
-        var poppedBot = selectedFlaskController.Bots.Pop();
-        selectedFlaskController.Colors.Pop();
+        bool isNextBotHasSameColor = false;
+        bool isNextPositionEmpty = false;
 
         var secondFlaskController = secondFlask.GetComponent<FlaskController>();
-        //secondFlaskController.Bots.Push(poppedBot);
-        //secondFlaskController.Colors.Push(poppedColor);
-        var pos = secondFlaskController.GetComponent<Renderer>().bounds.center;
-        //var toPos = secondFlaskController.FlaskPositions.Pop();
-        selectedFlaskController.ShiftNextPositionIndex(0);
+        do
+        {
+            if (secondFlaskController.Bots.Count == 4)
+                continue;
 
-        secondFlaskController.ProcessBotPosition(poppedBot);
-        
-        //poppedBot.transform.SetParent(toPos);
-        //poppedBot.GetComponent<NavMeshAgent>().SetDestination(pos);
+            secondFlaskController.Colors.TryPeek(out Color goalColor);
+            selectedFlaskController.Colors.TryPeek(out Color sourceColor);
 
+            if (sourceColor != goalColor && secondFlaskController.Colors.Count != 0)
+                continue;
+
+            var poppedBot = selectedFlaskController.Bots.Pop();
+            var poppedColor = selectedFlaskController.Colors.Pop();
+
+            selectedFlaskController.ShiftNextPositionIndex(0);
+            isNextPositionEmpty = secondFlaskController.ProcessBotPosition(poppedBot);
+
+            selectedFlaskController.Colors.TryPeek(out Color nextColor);
+            if (poppedColor == nextColor)
+                isNextBotHasSameColor = true;
+            else
+                isNextBotHasSameColor = false;
+        } while (isNextBotHasSameColor && isNextPositionEmpty);
 
         selectedFlaskController = null;
         flaskHighlighter.SetActive(false);
-
     }
 
     private Color GetRandomColor()
