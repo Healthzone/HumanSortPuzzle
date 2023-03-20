@@ -46,7 +46,7 @@ public class BotInitializer : MonoBehaviour
             flaskCount++;
         }
         SetBotColor();
-        GlobalEvents.SendBotsInitialized();
+        GlobalEvents.SendBotsInitialized(bots);
     }
 
     private void IntstantiateBots(GameObject flask, int flaskCount)
@@ -58,6 +58,7 @@ public class BotInitializer : MonoBehaviour
         {
             //Расставляем ботов по колбам
             bots[i - 1 + (flaskCount * 4)].SpawnedBot = Instantiate(botPrefab, spawnPositions[i].position, Quaternion.identity, spawnPositions[i]);
+            bots[i - 1 + (flaskCount * 4)].ParentPosition = spawnPositions[i];
         }
     }
 

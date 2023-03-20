@@ -7,6 +7,7 @@ public class Bot
 {
     private GameObject _spawnedBot;
     private Colors _botColor;
+    private Transform parentTransform;
 
     public Bot()
     {
@@ -19,4 +20,5 @@ public class Bot
 
     public Colors BotColor { get => _botColor; set => _botColor = value; }
     public GameObject SpawnedBot { get => _spawnedBot; set => _spawnedBot = value; }
+    public Transform ParentPosition { get => parentTransform; set => parentTransform = value; }
 }

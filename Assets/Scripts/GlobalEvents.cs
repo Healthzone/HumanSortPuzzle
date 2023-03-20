@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class GlobalEvents : MonoBehaviour
 {
     public static UnityEvent OnFlasksInitialized = new UnityEvent();
-    public static UnityEvent OnBotsInitialized = new UnityEvent();
+    public static UnityEvent<Bot[]> OnBotsInitialized = new UnityEvent<Bot[]>();
     public static UnityEvent OnFlaskControllerInitialized = new UnityEvent();
     public static UnityEvent OnFlaskFilledByOneColor = new UnityEvent();
 
@@ -15,9 +15,9 @@ public class GlobalEvents : MonoBehaviour
         OnFlasksInitialized.Invoke();
     }
 
-    public static void SendBotsInitialized()
+    public static void SendBotsInitialized(Bot[] bots)
     {
-        OnBotsInitialized.Invoke();
+        OnBotsInitialized.Invoke(bots);
     }
     public static void SendFlaskControllerInitialized()
     {

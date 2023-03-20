@@ -36,21 +36,26 @@ public class FlaskController : MonoBehaviour
         GlobalEvents.OnBotsInitialized.RemoveListener(InitializeComponent);
     }
 
-    private void InitializeComponent()
+    public void InitializeComponent(Bot[] bots = null)
     {
         InitializeStackColor();
         InitializeFlaskPositions();
         InitializeBotPositions();
+        isFilledByOneColor = false;
         GlobalEvents.SendFlaskControllerInitialized();
     }
 
     private void InitializeBotPositions()
     {
+        if (bots.Count != 0)
+            bots.Clear();
+
         for (int i = 0; i < gameObject.transform.childCount - 1; i++)
         {
             if (gameObject.transform.GetChild(i).childCount == 0)
                 continue;
             GameObject child = gameObject.transform.GetChild(i).GetChild(0).gameObject;
+            //child.GetComponent<NavMeshAgent>().updatePosition = false;
             bots.Push(child);
         }
     }
@@ -73,6 +78,9 @@ public class FlaskController : MonoBehaviour
 
     private void InitializeStackColor()
     {
+        if(colors.Count != 0)
+            colors.Clear();
+
         var bots = transform.GetComponentsInChildren<NavMeshAgent>();
         for (int i = 0; i < bots.Length; i++)
         {
@@ -142,4 +150,5 @@ public class FlaskController : MonoBehaviour
                 nextEmptyPositionIndex = 0;
         }
     }
+
 }

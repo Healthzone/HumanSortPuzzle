@@ -44,6 +44,7 @@ public class PlatformRaycast : MonoBehaviour
         //Пытаемся выбрать пустую колбу
         if (hitFlask.Colors.Count == 0 && selectedFlaskController == null)
         {
+            Debug.Log("Колба пустая");
             return;
         }
         //Выбираем первый раз колбу
