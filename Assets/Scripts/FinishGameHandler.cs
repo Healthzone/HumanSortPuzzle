@@ -10,12 +10,12 @@ public class FinishGameHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        GlobalEvents.OnFlaskControllerInitialized.AddListener(Initialize);
+        GlobalEvents.OnFlasksInitialized.AddListener(Initialize);
         GlobalEvents.OnFlaskFilledByOneColor.AddListener(HandleFilledFlask);
     }
     private void OnDisable()
     {
-        GlobalEvents.OnFlaskControllerInitialized.RemoveListener(Initialize);
+        GlobalEvents.OnFlasksInitialized.RemoveListener(Initialize);
         GlobalEvents.OnFlaskFilledByOneColor.RemoveListener(HandleFilledFlask);
     }
 
@@ -29,7 +29,7 @@ public class FinishGameHandler : MonoBehaviour
 
     private void Initialize()
     {
-        flaskWithColorCount = GetComponent<FlaskInitializer>().FilledBotsFlask;
-        currentFilledFlaskCount = 0;
+        flaskWithColorCount = GetComponent<FlaskInitializer>().FilledFlask;
+        //currentFilledFlaskCount = 0;
     }
 }

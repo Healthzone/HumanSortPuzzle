@@ -29,12 +29,12 @@ public class FlaskInitializer : MonoBehaviour
 
     private int filledFlask;
 
-    public int FilledBotsFlask { get => filledFlask; }
+    public int FilledFlask { get => filledFlask; }
 
     void Start()
     {
-        InitializeFlasks();
         filledFlask = flaskCount - 2;
+        InitializeFlasks();
     }
 
     private void InitializeFlasks(bool isNeedToAddNewFlask = false)
