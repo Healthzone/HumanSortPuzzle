@@ -29,8 +29,7 @@ public class FinishGameHandler : MonoBehaviour
 
     private void Initialize()
     {
-        // - 2 т.к. есть две пустые фласки
-        flaskWithColorCount = GetComponent<FlaskInitializer>().FlaskCount - 2;
+        flaskWithColorCount = GetComponent<FlaskInitializer>().FilledBotsFlask;
         currentFilledFlaskCount = 0;
     }
 }

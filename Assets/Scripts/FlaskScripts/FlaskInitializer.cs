@@ -23,21 +23,38 @@ public class FlaskInitializer : MonoBehaviour
 
     [SerializeField] private GameObject[] spawnedFlasks;
 
-    public int FlaskCount { get => flaskCount;}
+    private List<Vector3> calculatedPositions = new List<Vector3>();
+
+    private GameObject spawnedGround;
+
+    private int filledFlask;
+
+    public int FilledBotsFlask { get => filledFlask; }
 
     void Start()
     {
         InitializeFlasks();
+        filledFlask = flaskCount - 2;
     }
 
-    private void InitializeFlasks()
+    private void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
+        if (isNeedToAddNewFlask)
+        {
+            flaskCount++;
+        }
+
+
         spawnedFlasks = new GameObject[flaskCount];
 
-        GameObject spawnedGround = Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
+        if (!isNeedToAddNewFlask)
+            spawnedGround = Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
 
-        
+        if (isNeedToAddNewFlask)
+            calculatedPositions.Clear();
+
         Vector3 spawnPosition = Vector3.zero;
+
         for (int i = 0; i < flaskCount; i++)
         {
             int row = i / flaskRowCount;
@@ -66,14 +83,56 @@ public class FlaskInitializer : MonoBehaviour
                 }
 
             }
-            spawnedFlasks[i] = Instantiate(flaskPrefab, spawnPosition, flaskPrefab.transform.rotation, spawnedGround.transform);
+            calculatedPositions.Add(spawnPosition);
         }
+        InstantiateFlask(isNeedToAddNewFlask);
         GlobalEvents.SendFlaskInitialized();
         StartInitializingCamera(spawnedFlasks);
         BuildNavMeshPath(spawnedGround);
-        StartInitializingBots(spawnedFlasks);
+        EnableNavMeshAgentsOnBots();
+        if (!isNeedToAddNewFlask)
+            StartInitializingBots(spawnedFlasks);
     }
 
+    private void EnableNavMeshAgentsOnBots()
+    {
+        var navAgents = spawnedGround.GetComponentsInChildren<NavMeshAgent>();
+        foreach (var item in navAgents)
+        {
+            item.enabled = true;
+        }
+    }
+
+    private void InstantiateFlask(bool isNeedToAddNewFlask)
+    {
+        if (isNeedToAddNewFlask)
+        {
+            var flaskControllers = spawnedGround.GetComponentsInChildren<FlaskController>();
+            for (int i = 0; i < flaskControllers.Length; i++)
+            {
+                spawnedFlasks[i] = flaskControllers[i].gameObject;
+                var navAgents = spawnedFlasks[i].GetComponentsInChildren<NavMeshAgent>();
+                foreach (var item in navAgents)
+                {
+                    item.enabled = false;
+                }
+                spawnedFlasks[i].transform.position = calculatedPositions[i];
+
+            }
+            spawnedFlasks[flaskCount - 1] = Instantiate(flaskPrefab, calculatedPositions[calculatedPositions.Count - 1], flaskPrefab.transform.rotation, spawnedGround.transform);
+            spawnedFlasks[flaskCount - 1].GetComponent<FlaskController>().InitializeComponent();
+            return;
+        }
+        for (int i = 0; i < calculatedPositions.Count; i++)
+        {
+            spawnedFlasks[i] = Instantiate(flaskPrefab, calculatedPositions[i], flaskPrefab.transform.rotation, spawnedGround.transform);
+        }
+    }
+
+    public void AddNewFlask()
+    {
+        InitializeFlasks(true);
+    }
     private void StartInitializingBots(GameObject[] flasks)
     {
         BotInitializer initializer = GetComponent<BotInitializer>();
