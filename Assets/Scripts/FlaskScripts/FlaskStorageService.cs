@@ -37,5 +37,7 @@ public class FlaskStorageService : MonoBehaviour
         {
             flask.GetComponent<FlaskController>().InitializeComponent();
         }
+
+        GetComponent<FinishGameHandler>().CurrentFilledFlaskCount = 0;
     }
 }

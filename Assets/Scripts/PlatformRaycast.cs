@@ -84,6 +84,8 @@ public class PlatformRaycast : MonoBehaviour
         bool isNextPositionEmpty = false;
 
         var secondFlaskController = secondFlask.GetComponent<FlaskController>();
+
+        var poppedBotsList = new List<GameObject>();
         do
         {
             if (secondFlaskController.Bots.Count == 4)
@@ -98,6 +100,8 @@ public class PlatformRaycast : MonoBehaviour
             var poppedBot = selectedFlaskController.Bots.Pop();
             var poppedColor = selectedFlaskController.Colors.Pop();
 
+            poppedBotsList.Add(poppedBot);
+
             selectedFlaskController.ShiftNextPositionIndex(0);
             isNextPositionEmpty = secondFlaskController.ProcessBotPosition(poppedBot);
 
@@ -108,6 +112,8 @@ public class PlatformRaycast : MonoBehaviour
                 isNextBotHasSameColor = false;
         } while (isNextBotHasSameColor && isNextPositionEmpty);
 
+        ReverseElement reverseElement = new ReverseElement(poppedBotsList, selectedFlaskController);
+        GetComponent<ReverseActionSystem>().SaveAction(reverseElement);
         selectedFlaskController = null;
         flaskHighlighter.SetActive(false);
     }

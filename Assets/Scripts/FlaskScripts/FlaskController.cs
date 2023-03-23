@@ -23,7 +23,7 @@ public class FlaskController : MonoBehaviour
     public Stack<GameObject> Bots { get => bots; }
     public Transform[] FlaskPositions { get => flaskPositions; }
     public int NextEmptyPositionIndex { get => nextEmptyPositionIndex; }
-    public bool IsFilledByOneColor { get => isFilledByOneColor; }
+    public bool IsFilledByOneColor { get => isFilledByOneColor; set => isFilledByOneColor = value; }
     #endregion
 
     private void Awake()

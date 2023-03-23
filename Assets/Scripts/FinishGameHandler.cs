@@ -8,6 +8,8 @@ public class FinishGameHandler : MonoBehaviour
     private int flaskWithColorCount;
     private int currentFilledFlaskCount = 0;
 
+    public int CurrentFilledFlaskCount { get => currentFilledFlaskCount; set => currentFilledFlaskCount = value; }
+
     private void OnEnable()
     {
         GlobalEvents.OnFlasksInitialized.AddListener(Initialize);
