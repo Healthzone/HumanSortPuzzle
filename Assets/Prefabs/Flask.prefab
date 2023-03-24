@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2324604474341970231}
   m_Layer: 6
   m_Name: SecondPlace
-  m_TagString: Untagged
+  m_TagString: Position
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,10 +242,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flaskPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1283726691875651316}
+  - {fileID: 2324604474341970231}
+  - {fileID: 5314183612116596163}
+  - {fileID: 7892064290235611431}
   nextEmptyPositionIndex: -1
 --- !u!64 &4847354343667623513
 MeshCollider:
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 1283726691875651316}
   m_Layer: 6
   m_Name: FirstPlace
-  m_TagString: Untagged
+  m_TagString: Position
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 5314183612116596163}
   m_Layer: 6
   m_Name: ThirdPlace
-  m_TagString: Untagged
+  m_TagString: Position
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 7892064290235611431}
   m_Layer: 6
   m_Name: FourthPlace
-  m_TagString: Untagged
+  m_TagString: Position
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -62,17 +62,17 @@ public class FlaskController : MonoBehaviour
 
     private void InitializeFlaskPositions()
     {
-        var positions = transform.GetComponentsInChildren<Transform>().Where(x => !x.gameObject.CompareTag("Bot")).ToArray();
+        //var positions = transform.GetComponentsInChildren<Transform>().Where(x => x.gameObject.CompareTag("Position")).ToArray();
 
         if (gameObject.transform.GetChild(0).childCount == 0)
             nextEmptyPositionIndex = 0;
         else
             nextEmptyPositionIndex = 4;
 
-        for (int i = 1; i < positions.Length; i++)
-        {
-            flaskPositions[i - 1] = positions[i];
-        }
+        //for (int i = 1; i < positions.Length; i++)
+        //{
+        //    flaskPositions[i - 1] = positions[i];
+        //}
 
     }
 
@@ -84,7 +84,7 @@ public class FlaskController : MonoBehaviour
         var bots = transform.GetComponentsInChildren<NavMeshAgent>();
         for (int i = 0; i < bots.Length; i++)
         {
-            colors.Push(bots[i].GetComponent<Renderer>().material.color);
+            colors.Push(bots[i].GetComponentInChildren<SkinnedMeshRenderer>().material.color);
         }
         flaskPlane = transform.Find("Plane").gameObject;
     }
@@ -113,7 +113,7 @@ public class FlaskController : MonoBehaviour
     /// <returns>Возвращает true, если есть свободное место для следующего бота</returns>
     public bool ProcessBotPosition(GameObject bot)
     {
-        colors.Push(bot.GetComponent<Renderer>().material.color);
+        colors.Push(bot.GetComponentInChildren<SkinnedMeshRenderer>().material.color);
         bots.Push(bot);
 
         Transform position = flaskPositions[nextEmptyPositionIndex];

@@ -57,7 +57,7 @@ public class BotInitializer : MonoBehaviour
         for (int i = 1; i <= spawnPositions.Length - 1; i++)
         {
             //Расставляем ботов по колбам
-            bots[i - 1 + (flaskCount * 4)].SpawnedBot = Instantiate(botPrefab, spawnPositions[i].position, Quaternion.identity, spawnPositions[i]);
+            bots[i - 1 + (flaskCount * 4)].SpawnedBot = Instantiate(botPrefab, spawnPositions[i].position, Quaternion.Euler(0f, 180f, 0f), spawnPositions[i]);
             bots[i - 1 + (flaskCount * 4)].ParentPosition = spawnPositions[i];
         }
     }
@@ -79,7 +79,7 @@ public class BotInitializer : MonoBehaviour
         {
             //MaterialPropertyBlock propertyBlock = 
             //bot.SpawnedBot.GetComponent<MeshRenderer>().sharedMaterial = null;
-            bot.SpawnedBot.GetComponent<MeshRenderer>().sharedMaterial = SelectColorConstant(bot.BotColor);
+            bot.SpawnedBot.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = SelectColorConstant(bot.BotColor);
         }
     }
 

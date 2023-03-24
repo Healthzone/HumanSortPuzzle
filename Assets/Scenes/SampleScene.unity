@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828231e3b6189c246af967aea3db93e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botPrefab: {fileID: 5523269398411787754, guid: 3036b0a84cbd3e247aa099cad4d63ad4,
+  botPrefab: {fileID: 7861495928350575183, guid: 4975536cf70d9604e812baa5c8a1b55d,
     type: 3}
 --- !u!114 &95264917
 MonoBehaviour:
