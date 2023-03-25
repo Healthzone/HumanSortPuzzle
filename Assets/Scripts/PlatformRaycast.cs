@@ -73,7 +73,8 @@ public class PlatformRaycast : MonoBehaviour
             flaskHighlighter.SetActive(true);
             flaskHighlighter.transform.position = selectedFlaskController.GetComponent<Renderer>().bounds.center;
             var material = flaskHighlighter.GetComponent<MeshRenderer>().sharedMaterial;
-            material.color = Color.black;
+            var color = Color.clear;
+            material.color = color;
             material.DOColor(result, colorShowDuration);
         }
     }
@@ -115,9 +116,21 @@ public class PlatformRaycast : MonoBehaviour
         ReverseElement reverseElement = new ReverseElement(poppedBotsList, selectedFlaskController);
         GetComponent<ReverseActionSystem>().SaveAction(reverseElement);
         selectedFlaskController = null;
-        flaskHighlighter.SetActive(false);
+        UnhightlightFlaskPlane();
     }
 
+    private void UnhightlightFlaskPlane()
+    {
+        var material = flaskHighlighter.GetComponent<MeshRenderer>().sharedMaterial;
+        var color = material.color;
+        color.a = 0f;
+        material.DOColor(color, colorShowDuration / 2).OnComplete(EnableFlaskPlane);
+
+    }
+    private void EnableFlaskPlane()
+    {
+        flaskHighlighter.SetActive(false);
+    }
     private Color GetRandomColor()
     {
         return new Color(
