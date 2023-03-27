@@ -13,8 +13,6 @@ public class PlatformRaycast : MonoBehaviour
     [SerializeField] private LayerMask raycastLayer;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float colorShowDuration = 0.5f;
-    [SerializeField] private GameObject firstFlaskHighlighter;
-    [SerializeField] private GameObject secondFlaskHighlighter;
 
     [SerializeField] private FlaskController selectedFlaskController;
     private RaycastHit hit;
@@ -34,18 +32,21 @@ public class PlatformRaycast : MonoBehaviour
 
         }
     }
-    private void Start()
-    {
-    }
-
     private void SelectFlask(RaycastHit hit)
     {
         var hitFlask = hit.transform.GetComponent<FlaskController>();
 
+        //Выбираем повторно ту же колбу
+        if (hitFlask.Equals(selectedFlaskController))
+        {
+            ChangeFlaskPlaneAlphaColor(selectedFlaskController);
+            selectedFlaskController = null;
+            return;
+        }
+
         //Пытаемся выбрать пустую колбу
         if (hitFlask.Colors.Count == 0 && selectedFlaskController == null)
         {
-            Debug.Log("Колба пустая");
             return;
         }
         //Выбираем первый раз колбу
@@ -137,7 +138,6 @@ public class PlatformRaycast : MonoBehaviour
                {
                    flask.FlaskPlane.SetActive(false);
                });
-
     }
     private void HighlightSecondFlaskPlane(FlaskController flask)
     {
@@ -160,7 +160,6 @@ public class PlatformRaycast : MonoBehaviour
                      {
                          flask.FlaskPlane.SetActive(false);
                      });
-
         }
 
     }
