@@ -1,9 +1,11 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using static Unity.Burst.Intrinsics.X86;
 
 public class PlatformRaycast : MonoBehaviour
@@ -11,7 +13,8 @@ public class PlatformRaycast : MonoBehaviour
     [SerializeField] private LayerMask raycastLayer;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float colorShowDuration = 0.5f;
-    [SerializeField] private GameObject flaskHighlighter;
+    [SerializeField] private GameObject firstFlaskHighlighter;
+    [SerializeField] private GameObject secondFlaskHighlighter;
 
     [SerializeField] private FlaskController selectedFlaskController;
     private RaycastHit hit;
@@ -27,15 +30,13 @@ public class PlatformRaycast : MonoBehaviour
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, raycastLayer))
             {
                 SelectFlask(hit);
-
-                //_renderer = hit.transform.gameObject.GetComponent<Renderer>();
-                //_renderer.material.color = GetRandomColor();
-
             }
 
         }
     }
-
+    private void Start()
+    {
+    }
 
     private void SelectFlask(RaycastHit hit)
     {
@@ -54,25 +55,27 @@ public class PlatformRaycast : MonoBehaviour
             if (!flaskController.IsFilledByOneColor)
             {
                 selectedFlaskController = flaskController;
-                HighlightFlaskPlane();
+                HighlightFlaskPlane(selectedFlaskController);
             }
         }
         //Выбираем вторую колбу и пытаемся переместить ботов
         if (selectedFlaskController != null && hitFlask != selectedFlaskController)
         {
+            HighlightSecondFlaskPlane(hitFlask.gameObject.GetComponent<FlaskController>());
             TryTranslateBots(hitFlask.gameObject);
+
         }
 
     }
 
-    private void HighlightFlaskPlane()
+    private void HighlightFlaskPlane(FlaskController sourceController)
     {
-        selectedFlaskController.Colors.TryPeek(out Color result);
+        sourceController.Colors.TryPeek(out Color result);
         if (result != nullColor)
         {
-            flaskHighlighter.SetActive(true);
-            flaskHighlighter.transform.position = selectedFlaskController.GetComponent<Renderer>().bounds.center;
-            var material = flaskHighlighter.GetComponent<MeshRenderer>().sharedMaterial;
+            sourceController.FlaskPlane.SetActive(true);
+            //highlighter.transform.position = sourceController.GetComponent<Renderer>().bounds.center;
+            var material = sourceController.FlaskPlane.GetComponent<MeshRenderer>().material;
             var color = Color.clear;
             material.color = color;
             material.DOColor(result, colorShowDuration);
@@ -113,31 +116,52 @@ public class PlatformRaycast : MonoBehaviour
                 isNextBotHasSameColor = false;
         } while (isNextBotHasSameColor && isNextPositionEmpty);
 
-        ReverseElement reverseElement = new ReverseElement(poppedBotsList, selectedFlaskController);
-        GetComponent<ReverseActionSystem>().SaveAction(reverseElement);
+        if (poppedBotsList.Count > 0)
+        {
+            ReverseElement reverseElement = new ReverseElement(poppedBotsList, selectedFlaskController);
+            GetComponent<ReverseActionSystem>().SaveAction(reverseElement);
+        }
+        ChangeFlaskPlaneAlphaColor(selectedFlaskController);
         selectedFlaskController = null;
-        UnhightlightFlaskPlane();
     }
 
-    private void UnhightlightFlaskPlane()
+    private void ChangeFlaskPlaneAlphaColor(FlaskController flask)
     {
-        var material = flaskHighlighter.GetComponent<MeshRenderer>().sharedMaterial;
+        var material = flask.FlaskPlane.GetComponent<MeshRenderer>().material;
         var color = material.color;
         color.a = 0f;
-        material.DOColor(color, colorShowDuration / 2).OnComplete(EnableFlaskPlane);
+
+        DOTween.Sequence()
+           .Append(material.DOColor(color, colorShowDuration))
+           .OnComplete(() =>
+               {
+                   flask.FlaskPlane.SetActive(false);
+               });
 
     }
-    private void EnableFlaskPlane()
+    private void HighlightSecondFlaskPlane(FlaskController flask)
     {
-        flaskHighlighter.SetActive(false);
-    }
-    private Color GetRandomColor()
-    {
-        return new Color(
-            Random.Range(0f, 1f),
-            Random.Range(0f, 1f),
-            Random.Range(0f, 1f)
-            );
+        flask.Colors.TryPeek(out Color result);
+        if (result != nullColor)
+        {
+            flask.FlaskPlane.SetActive(true);
+            var material = flask.FlaskPlane.GetComponent<MeshRenderer>().material;
+            var color = Color.clear;
+            material.color = color;
+            DOTween.Sequence()
+                .Append(material.DOColor(result, colorShowDuration / 2))
+                .OnComplete(() =>
+                    {
+                        color = material.color;
+                        color.a = 0f;
+                    })
+                .Append(material.DOColor(color, colorShowDuration / 2))
+                .OnComplete(() =>
+                     {
+                         flask.FlaskPlane.SetActive(false);
+                     });
+
+        }
 
     }
 }

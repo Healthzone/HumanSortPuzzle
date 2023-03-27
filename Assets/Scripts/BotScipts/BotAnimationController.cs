@@ -27,6 +27,7 @@ public class BotAnimationController : MonoBehaviour
         {
             animator.SetFloat("Run", 0f);
             isRunning = false;
+            GetComponent<Transform>().localEulerAngles = new Vector3(0f, 90f, 0f);
         }
     }
 

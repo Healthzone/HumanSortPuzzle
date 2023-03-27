@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17338791, g: 0.21673939, b: 0.2988079, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028492, g: 0.22571586, b: 0.30692315, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -179,7 +179,8 @@ MonoBehaviour:
     m_Bits: 64
   mainCamera: {fileID: 330585545}
   colorShowDuration: 0.5
-  flaskHighlighter: {fileID: 1854773771}
+  firstFlaskHighlighter: {fileID: 1854773771}
+  secondFlaskHighlighter: {fileID: 182481251}
   selectedFlaskController: {fileID: 0}
 --- !u!114 &95264915
 MonoBehaviour:
@@ -354,6 +355,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &182481250
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086222874993144224, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629593662481390203, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_Name
+      value: SecondHighlighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629593662481390203, guid: 9d3450056f2548c438c799b5228ebef0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d3450056f2548c438c799b5228ebef0, type: 3}
+--- !u!1 &182481251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7629593662481390203, guid: 9d3450056f2548c438c799b5228ebef0,
+    type: 3}
+  m_PrefabInstance: {fileID: 182481250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1291841547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,7 +1733,7 @@ PrefabInstance:
     - target: {fileID: 7629593662481390203, guid: 9d3450056f2548c438c799b5228ebef0,
         type: 3}
       propertyPath: m_Name
-      value: FlaskHighlighter
+      value: FirstHighlighter
       objectReference: {fileID: 0}
     - target: {fileID: 7629593662481390203, guid: 9d3450056f2548c438c799b5228ebef0,
         type: 3}
