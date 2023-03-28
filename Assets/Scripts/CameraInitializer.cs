@@ -22,12 +22,15 @@ public class CameraInitializer : MonoBehaviour
         }
 
         float horizontalFov = Camera.VerticalToHorizontalFieldOfView(_camera.fieldOfView, _camera.aspect);
+        var centerAtFront = new Vector3(bounds.center.x, bounds.max.y, bounds.center.z);
+        var centerAtFrontTop = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z);
+        var centerToTopDist = (centerAtFrontTop - centerAtFront).magnitude;
         float maxExtent = bounds.extents.magnitude;
-        var minDistance = (maxExtent * margin) / Mathf.Tan(horizontalFov * 0.5f * Mathf.Deg2Rad);
+        var minDistance = (maxExtent * margin) / Mathf.Sin(horizontalFov * 0.5f * Mathf.Deg2Rad);
 
         _camera.transform.position = new Vector3(bounds.center.x, minDistance, bounds.center.z);
         _camera.transform.LookAt(bounds.center);
-        _camera.nearClipPlane = minDistance - maxExtent * margin;
+        //_camera.nearClipPlane = minDistance - maxExtent * margin;
 
     }
 }

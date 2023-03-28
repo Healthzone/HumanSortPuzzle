@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ca0856c868e034a82ee2d2ae65bb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flaskCount: 8
-  flaskRowCount: 4
+  flaskCount: 5
+  flaskRowCount: 5
   groundPrefab: {fileID: 755424215410949054, guid: a80048aae45336f49a58d69d67d61f1d,
     type: 3}
   flaskPrefab: {fileID: 6748222393500023823, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 330585545}
-  margin: 1
+  margin: 0.85
 --- !u!114 &95264918
 MonoBehaviour:
   m_ObjectHideFlags: 0
