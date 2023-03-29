@@ -30,15 +30,12 @@ public class FlaskInitializer : MonoBehaviour
     private int filledFlask;
 
     public int FilledFlask { get => filledFlask; }
+    public int FlaskCount { get => flaskCount; set => flaskCount = value; }
 
-    void Start()
+
+    public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
         filledFlask = flaskCount - 2;
-        InitializeFlasks();
-    }
-
-    private void InitializeFlasks(bool isNeedToAddNewFlask = false)
-    {
         if (isNeedToAddNewFlask)
         {
             flaskCount++;

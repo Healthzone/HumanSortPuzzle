@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class FinishGameHandler : MonoBehaviour
 {
@@ -24,9 +25,13 @@ public class FinishGameHandler : MonoBehaviour
     private void HandleFilledFlask()
     {
         currentFilledFlaskCount++;
-        Debug.Log(currentFilledFlaskCount);
         if (currentFilledFlaskCount == flaskWithColorCount)
-            Debug.Log("Уровень пройден");
+        {
+            int animIndex = UnityEngine.Random.Range(0, 4);
+            YandexGame.savesData.currentLevel++;
+            YandexGame.SaveProgress();
+            GlobalEvents.SendLevelEnd(animIndex);
+        }
     }
 
     private void Initialize()

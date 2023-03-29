@@ -122,6 +122,8 @@ public class FlaskController : MonoBehaviour
         bot.transform.SetParent(position.transform);
 
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
+        if(bot.GetComponent<NavMeshAgent>().velocity.magnitude == 0)
+            bot.GetComponent<Animator>().SetTrigger("Running");
 
         isFilledByOneColor = CheckFlaskColorFill();
         if (isFilledByOneColor)

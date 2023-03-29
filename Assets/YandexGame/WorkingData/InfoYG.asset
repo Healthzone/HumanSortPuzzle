@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa747916aa66674d96ea40ca8a480b2, type: 3}
   m_Name: InfoYG
   m_EditorClassIdentifier: 
-  scopes: 1
+  scopes: 0
   playerPhotoSize: 0
-  leaderboardEnable: 1
+  leaderboardEnable: 0
   saveCloud: 1
   flush: 0
   saveCloudInterval: 5
@@ -23,7 +23,7 @@ MonoBehaviour:
   durationOfAdSimulation: 0.5
   LocalizationEnable: 1
   callingLanguageCheck: 0
-  translateMethod: 0
+  translateMethod: 1
   domainAutoLocalization: com
   CSVFileTranslate:
     format: 0

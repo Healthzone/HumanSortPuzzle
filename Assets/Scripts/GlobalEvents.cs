@@ -10,6 +10,7 @@ public class GlobalEvents : MonoBehaviour
     public static UnityEvent OnFlaskControllerInitialized = new UnityEvent();
     public static UnityEvent OnNewFlaskAdded = new UnityEvent();
     public static UnityEvent OnFlaskFilledByOneColor = new UnityEvent();
+    public static UnityEvent<int> OnLevelEnd = new UnityEvent<int>();
 
     public static void SendFlaskInitialized()
     {
@@ -31,6 +32,10 @@ public class GlobalEvents : MonoBehaviour
     public static void SendNewFlaskAdded()
     {
         OnNewFlaskAdded.Invoke();
+    }
+    public static void SendLevelEnd(int animIndex)
+    {
+        OnLevelEnd.Invoke(animIndex);
     }
 
 }
