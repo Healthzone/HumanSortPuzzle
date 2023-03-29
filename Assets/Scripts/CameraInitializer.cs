@@ -1,12 +1,5 @@
-using DG.Tweening.Core.Easing;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class CameraInitializer : MonoBehaviour
 {
@@ -21,15 +14,20 @@ public class CameraInitializer : MonoBehaviour
             bounds.Encapsulate(flasks[i].GetComponent<Renderer>().bounds);
         }
 
-        float horizontalFov = Camera.VerticalToHorizontalFieldOfView(_camera.fieldOfView, _camera.aspect);
-        var centerAtFront = new Vector3(bounds.center.x, bounds.max.y, bounds.center.z);
-        var centerAtFrontTop = new Vector3(bounds.max.x, bounds.max.y, bounds.center.z);
-        var centerToTopDist = (centerAtFrontTop - centerAtFront).magnitude;
-        float maxExtent = bounds.extents.magnitude;
-        var minDistance = (maxExtent * margin) / Mathf.Sin(horizontalFov * 0.5f * Mathf.Deg2Rad);
+        float orthoSize;
+        if (_camera.aspect < 1)
+        {
+            orthoSize = bounds.extents.magnitude / _camera.aspect;
+        }
+        else
+        {
+            orthoSize = bounds.extents.magnitude;
+        }
+        var _cameraOffset = orthoSize / Mathf.Tan(Mathf.Deg2Rad * _camera.transform.rotation.eulerAngles.x);
 
-        _camera.transform.position = new Vector3(bounds.center.x, minDistance, bounds.center.z);
-        _camera.transform.LookAt(bounds.center);
+        _camera.orthographicSize = orthoSize * margin;
+        _camera.transform.position = bounds.center + Vector3.up * orthoSize;
+        _camera.transform.position += Vector3.back * _cameraOffset;
         //_camera.nearClipPlane = minDistance - maxExtent * margin;
 
     }
