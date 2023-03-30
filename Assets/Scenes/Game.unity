@@ -179,7 +179,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mainCamera: {fileID: 330585545}
-  colorShowDuration: 0.4
+  colorShowDuration: 0.35
   selectedFlaskController: {fileID: 0}
 --- !u!114 &95264915
 MonoBehaviour:
@@ -202,6 +202,8 @@ MonoBehaviour:
   offsetY: 0.25
   offsetZ: -5.8
   spawnedFlasks: []
+  loadingPanel: {fileID: 1169261343}
+  addNewFlaskBtn: {fileID: 1705957367}
 --- !u!114 &95264916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +293,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a5a4ed8107ca4b9ac44430f89d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reverse3Action: {fileID: -1025864905, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
+  reverse2Action: {fileID: 1214327748, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
+  reverse1Action: {fileID: -468366641, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
+  reverse0ActionAds: {fileID: -568969708, guid: 07fd4decde737a2498142277dfc8cafd,
+    type: 3}
+  reverse0Action: {fileID: -1140845155, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
+  imageReverseAction: {fileID: 578264867}
 --- !u!114 &95264922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,10 +314,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 330585545}
   loadingPanel: {fileID: 1169261343}
-  fadeDuration: 0.5
   difficultDelimeter: 5
-  isFlaskCountOverride: 1
-  flaskCountOverride: 12
+  isFlaskCountOverride: 0
+  flaskCountOverride: 10
+  loadingFadeAnimation: {fileID: 2139280608}
+  preLoadingDelay: 0.5
+  maxFlaskCount: 15
 --- !u!1 &180988549
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +838,7 @@ RectTransform:
   m_GameObject: {fileID: 578264864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 2.55, y: 2.55, z: 2.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 343259145}
@@ -835,8 +846,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
-  m_SizeDelta: {x: 248, y: 248}
+  m_AnchoredPosition: {x: 300, y: 7.8}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578264866
 MonoBehaviour:
@@ -914,7 +925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -535355047, guid: a6bb66a2ff7696e41a2b428c7fa1f3de, type: 3}
+  m_Sprite: {fileID: 1214327748, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1246,7 +1257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1936386681, guid: a6bb66a2ff7696e41a2b428c7fa1f3de, type: 3}
+  m_Sprite: {fileID: 1390816506, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1781,7 +1792,7 @@ CanvasGroup:
   m_GameObject: {fileID: 1169261343}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1291841546
@@ -2287,7 +2298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -480090333, guid: a6bb66a2ff7696e41a2b428c7fa1f3de, type: 3}
+  m_Sprite: {fileID: -1420563161, guid: 07fd4decde737a2498142277dfc8cafd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2318,6 +2329,7 @@ GameObject:
   - component: {fileID: 2139280604}
   - component: {fileID: 2139280603}
   - component: {fileID: 2139280607}
+  - component: {fileID: 2139280608}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2424,4 +2436,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
-  endPanelDelay: 2.5
+  endPanelDelay: 3
+--- !u!111 &2139280608
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139280602}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 438b6fa3aea595a4ab3a7dce992048d4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 438b6fa3aea595a4ab3a7dce992048d4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

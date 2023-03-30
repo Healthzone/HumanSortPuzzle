@@ -36,14 +36,15 @@ public class FlaskController : MonoBehaviour
         GlobalEvents.OnBotsInitialized.RemoveListener(InitializeComponent);
     }
 
-    public void InitializeComponent(Bot[] bots = null)
+    public void InitializeComponent(Bot[] bots = null, bool restart = false)
     {
         InitializeStackColor();
         InitializeFlaskPositions();
         InitializeBotPositions();
         isFilledByOneColor = false;
         GetComponent<MeshRenderer>().material.color = new Color(0.7830188f, 0.7830188f, 0.7830188f);
-        GlobalEvents.SendFlaskControllerInitialized();
+        if (!restart)
+            GlobalEvents.SendFlaskControllerInitialized();
     }
 
     private void InitializeBotPositions()

@@ -9,32 +9,52 @@ public class LoadingSystem : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private float fadeDuration;
     [SerializeField] private int difficultDelimeter = 5;
     [SerializeField] private bool isFlaskCountOverride;
     [SerializeField] private int flaskCountOverride;
+    [SerializeField] private Animation loadingFadeAnimation;
+    [SerializeField] private float preLoadingDelay = 0.5f;
+    [SerializeField] private int maxFlaskCount = 15;
     private int calculatedFlaskCount;
 
     private FlaskInitializer flaskInitializer;
+
     private void OnEnable()
     {
         GlobalEvents.OnFlaskControllerInitialized.AddListener(DisableLoadingPanel);
-        YandexGame.GetDataEvent += StartGame;
+        YandexGame.GetDataEvent += BeginLoading;
     }
 
-    private void OnDisable() => YandexGame.GetDataEvent -= StartGame;
+    private void OnDisable() => YandexGame.GetDataEvent -= BeginLoading;
+
+    private void BeginLoading()
+    {
+        StartCoroutine(LoadingDelay());
+    }
 
     private void Awake()
     {
         loadingPanel.SetActive(true);
     }
 
+    private IEnumerator LoadingDelay()
+    {
+        yield return new WaitForSeconds(preLoadingDelay);
+        StartGame();
+    }
     private void StartGame()
     {
         flaskInitializer = GetComponent<FlaskInitializer>();
         if (isFlaskCountOverride)
         {
-            flaskInitializer.FlaskCount = flaskCountOverride;
+            if (flaskCountOverride > maxFlaskCount)
+            {
+                flaskInitializer.FlaskCount = maxFlaskCount;
+            }
+            else
+            {
+                flaskInitializer.FlaskCount = flaskCountOverride;
+            }
         }
         else
         {
@@ -47,10 +67,18 @@ public class LoadingSystem : MonoBehaviour
                 calculatedFlaskCount = 5 + YandexGame.savesData.currentLevel / difficultDelimeter;
             }
 
-            flaskInitializer.FlaskCount = calculatedFlaskCount;
+            if (calculatedFlaskCount > maxFlaskCount)
+            {
+                flaskInitializer.FlaskCount = maxFlaskCount;
+            }
+            else
+            {
+                flaskInitializer.FlaskCount = calculatedFlaskCount;
+            }
         }
         if (flaskInitializer.FlaskCount >= 11)
             flaskInitializer.FlaskRowCount = 6;
+
         if (flaskInitializer.FlaskCount >= 13)
         {
             flaskInitializer.FlaskRowCount = 6;
@@ -65,15 +93,12 @@ public class LoadingSystem : MonoBehaviour
 
     private void DisableLoadingPanel()
     {
-        loadingPanel.GetComponent<CanvasGroup>().DOFade(0f, fadeDuration).OnComplete(() =>
-        {
-            loadingPanel.SetActive(false);
-        });
+        loadingFadeAnimation.Play();
     }
 
     private void Start()
     {
         if (YandexGame.SDKEnabled == true)
-            StartGame();
+            BeginLoading();
     }
 }

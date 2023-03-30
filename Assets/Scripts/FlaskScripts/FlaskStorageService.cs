@@ -19,7 +19,7 @@ public class FlaskStorageService : MonoBehaviour
         GlobalEvents.OnBotsInitialized.RemoveListener(SaveInitializedFlasks);
     }
 
-    private void SaveInitializedFlasks(Bot[] bots)
+    private void SaveInitializedFlasks(Bot[] bots, bool restart)
     {
         _bots = bots;
     }
@@ -41,9 +41,11 @@ public class FlaskStorageService : MonoBehaviour
         var flasks = GameObject.FindGameObjectsWithTag("Flask");
         foreach (var flask in flasks)
         {
-            flask.GetComponent<FlaskController>().InitializeComponent();
+            flask.GetComponent<FlaskController>().InitializeComponent(null,true);
         }
 
         GetComponent<FinishGameHandler>().CurrentFilledFlaskCount = 0;
+
+        GetComponent<ReverseActionSystem>().ResetReverseActionCount();
     }
 }

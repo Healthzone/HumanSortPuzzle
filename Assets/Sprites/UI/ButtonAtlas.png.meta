@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a6bb66a2ff7696e41a2b428c7fa1f3de
+guid: 07fd4decde737a2498142277dfc8cafd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -105,78 +105,162 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    maxTextureSize: 256
+    resizeAlgorithm: 1
+    textureFormat: 29
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_0"
+      name: AddFlask
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 248
-        height: 248
+        y: 435
+        width: 186
+        height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7a5fbda92c5357459065f3c78dbaeae
-      internalID: -480090333
+      spriteID: 70e47d37b59e5164e81ed9bd19a26a8e
+      internalID: -1420563161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_1"
+      name: Restart
       rect:
         serializedVersion: 2
-        x: 276
-        y: 0
-        width: 248
-        height: 248
+        x: 207
+        y: 435
+        width: 186
+        height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f512055470c0274c8c336e65d7cfb8e
-      internalID: 1936386681
+      spriteID: 5134e2464aa828b43af6649809a40ef1
+      internalID: 1390816506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_2"
+      name: ReverseZeroAdd
       rect:
         serializedVersion: 2
-        x: 556
-        y: 0
-        width: 248
-        height: 248
+        x: 400
+        y: 435
+        width: 215
+        height: 197
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c460e07c2f6f0541a9dbb01c506b661
-      internalID: -535355047
+      spriteID: 86dc86ed91ea5904c99b072e99ffc28a
+      internalID: -568969708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reverse1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 198
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a151e7a87393f5442abd2cfb865df7e2
+      internalID: -468366641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reverse2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 216
+        width: 198
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4015cebd4f24974d9d12d92e3fceb81
+      internalID: 1214327748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reverse3
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 222
+        width: 198
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 554313360b331d04085ca659eb94655a
+      internalID: -1025864905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Reverse0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 198
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f058a331614fe4f8ff21d700fdb705
+      internalID: -1140845155
       vertices: []
       indices: 
       edges: []
@@ -184,7 +268,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f72239c5b223a7d4ea4e0bc53d4db30e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -192,9 +276,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_0": -480090333
-      "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_1": 1936386681
-      "\u0420\u0435\u0441\u0443\u0440\u0441 14@4x_2": -535355047
+      AddFlask: -1420563161
+      Restart: 1390816506
+      Reverse0: -1140845155
+      Reverse1: -468366641
+      Reverse2: 1214327748
+      Reverse3: -1025864905
+      ReverseZeroAdd: -568969708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

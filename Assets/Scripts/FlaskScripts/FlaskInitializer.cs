@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using YG;
+using YG.Example;
 
 public class FlaskInitializer : MonoBehaviour
 {
@@ -23,6 +27,9 @@ public class FlaskInitializer : MonoBehaviour
 
     [SerializeField] private GameObject[] spawnedFlasks;
 
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private GameObject addNewFlaskBtn;
+
     private List<Vector3> calculatedPositions = new List<Vector3>();
 
     private GameObject spawnedGround;
@@ -32,6 +39,9 @@ public class FlaskInitializer : MonoBehaviour
     public int FilledFlask { get => filledFlask; }
     public int FlaskCount { get => flaskCount; set => flaskCount = value; }
     public int FlaskRowCount { get => flaskRowCount; set => flaskRowCount = value; }
+    private void OnEnable() => YandexGame.RewardVideoEvent += AddNewFlaskRewarded;
+
+    private void OnDisable() => YandexGame.RewardVideoEvent -= AddNewFlaskRewarded;
 
     public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
@@ -128,7 +138,17 @@ public class FlaskInitializer : MonoBehaviour
 
     public void AddNewFlask()
     {
+
+        YandexGame.RewVideoShow(2);
+    }
+
+    private void AddNewFlaskRewarded(int obj)
+    {
+        loadingPanel.SetActive(true);
+        loadingPanel.GetComponent<CanvasGroup>().alpha = 1f;
         InitializeFlasks(true);
+        addNewFlaskBtn.GetComponent<UnityEngine.UI.Button>().interactable = false;
+
     }
     private void StartInitializingBots(GameObject[] flasks)
     {
