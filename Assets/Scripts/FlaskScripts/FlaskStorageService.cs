@@ -28,10 +28,14 @@ public class FlaskStorageService : MonoBehaviour
     {
         foreach (var bot in _bots)
         {
+            bool isNeedToMoveBot = !bot.SpawnedBot.GetComponentsInParent<Transform>()[1].Equals(bot.ParentPosition);
             bot.SpawnedBot.transform.SetParent(bot.ParentPosition);
-            bot.SpawnedBot.GetComponent<NavMeshAgent>().SetDestination(bot.ParentPosition.position);
-            if (bot.SpawnedBot.GetComponent<NavMeshAgent>().velocity.magnitude > 0.3f && bot.SpawnedBot.GetComponent<NavMeshAgent>().pathStatus != NavMeshPathStatus.PathComplete)
-                bot.SpawnedBot.GetComponent<Animator>().SetTrigger("Running");
+
+            var agent = bot.SpawnedBot.GetComponent<NavMeshAgent>();
+            var animator = bot.SpawnedBot.GetComponent<Animator>();
+            agent.SetDestination(bot.ParentPosition.position);
+            if (!animator.GetBool("IsRunning") && isNeedToMoveBot)
+                animator.SetBool("IsRunning", true);
         }
 
         var flasks = GameObject.FindGameObjectsWithTag("Flask");

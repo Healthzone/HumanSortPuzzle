@@ -51,7 +51,7 @@ public class BotAnimationController : MonoBehaviour
         }
         else if (isRunning && agent.pathStatus == NavMeshPathStatus.PathComplete)
         {
-            animator.SetTrigger("Running");
+            animator.SetBool("IsRunning", false);
             isRunning = false;
             GetComponent<Transform>().localEulerAngles = new Vector3(0f, 90f, 0f);
         }

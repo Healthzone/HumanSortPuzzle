@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class FlaskInitializer : MonoBehaviour
 {
-    [SerializeField] private int flaskCount;
+    private int flaskCount;
     [SerializeField] private int flaskRowCount;
 
     [Header("Prefabs")]
@@ -31,7 +31,7 @@ public class FlaskInitializer : MonoBehaviour
 
     public int FilledFlask { get => filledFlask; }
     public int FlaskCount { get => flaskCount; set => flaskCount = value; }
-
+    public int FlaskRowCount { get => flaskRowCount; set => flaskRowCount = value; }
 
     public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {

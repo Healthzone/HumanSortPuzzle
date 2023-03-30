@@ -42,6 +42,7 @@ public class FlaskController : MonoBehaviour
         InitializeFlaskPositions();
         InitializeBotPositions();
         isFilledByOneColor = false;
+        GetComponent<MeshRenderer>().material.color = new Color(0.7830188f, 0.7830188f, 0.7830188f);
         GlobalEvents.SendFlaskControllerInitialized();
     }
 
@@ -78,7 +79,7 @@ public class FlaskController : MonoBehaviour
 
     private void InitializeStackColor()
     {
-        if(colors.Count != 0)
+        if (colors.Count != 0)
             colors.Clear();
 
         var bots = transform.GetComponentsInChildren<NavMeshAgent>();
@@ -122,12 +123,15 @@ public class FlaskController : MonoBehaviour
         bot.transform.SetParent(position.transform);
 
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
-        if(bot.GetComponent<NavMeshAgent>().velocity.magnitude == 0)
-            bot.GetComponent<Animator>().SetTrigger("Running");
+        //if (bot.GetComponent<NavMeshAgent>().velocity.magnitude == 0)
+        bot.GetComponent<Animator>().SetBool("IsRunning", true);
 
         isFilledByOneColor = CheckFlaskColorFill();
         if (isFilledByOneColor)
+        {
+            GetComponent<MeshRenderer>().material.color = Colors.Peek();
             GlobalEvents.SendFlaskFilledByOneColor();
+        }
 
         return Bots.Count == 4 ? false : true;
     }

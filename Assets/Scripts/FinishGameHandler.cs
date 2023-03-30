@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using YG;
 
@@ -37,6 +38,5 @@ public class FinishGameHandler : MonoBehaviour
     private void Initialize()
     {
         flaskWithColorCount = GetComponent<FlaskInitializer>().FilledFlask;
-        //currentFilledFlaskCount = 0;
     }
 }

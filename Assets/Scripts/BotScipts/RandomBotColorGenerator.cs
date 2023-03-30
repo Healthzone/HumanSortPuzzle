@@ -46,6 +46,18 @@ public class RandomBotColorGenerator
                 return Colors.Orange;
             case 6:
                 return Colors.Cyan;
+            case 7:
+                return Colors.Purple;
+            case 8:
+                return Colors.White;
+            case 9:
+                return Colors.Grey;
+            case 10:
+                return Colors.PaleBlue;
+            case 11:
+                return Colors.Lime;
+            case 12:
+                return Colors.DarkModerateOrange;
             default:
                 throw new Exception("Ошибка определения цвета");
         }

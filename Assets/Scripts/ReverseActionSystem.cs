@@ -32,6 +32,7 @@ public class ReverseActionSystem : MonoBehaviour
             if (currentController.IsFilledByOneColor)
             {
                 currentController.IsFilledByOneColor = false;
+                currentController.GetComponent<MeshRenderer>().material.color = new Color(0.7830188f, 0.7830188f, 0.7830188f);
                 GetComponent<FinishGameHandler>().CurrentFilledFlaskCount--;
             }
 

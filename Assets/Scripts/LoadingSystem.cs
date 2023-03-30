@@ -7,9 +7,12 @@ using YG;
 
 public class LoadingSystem : MonoBehaviour
 {
+    [SerializeField] private Camera _camera;
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private float fadeDuration;
     [SerializeField] private int difficultDelimeter = 5;
+    [SerializeField] private bool isFlaskCountOverride;
+    [SerializeField] private int flaskCountOverride;
     private int calculatedFlaskCount;
 
     private FlaskInitializer flaskInitializer;
@@ -28,17 +31,34 @@ public class LoadingSystem : MonoBehaviour
 
     private void StartGame()
     {
-        if (YandexGame.savesData.currentLevel >= 1 && YandexGame.savesData.currentLevel <= 4)
+        flaskInitializer = GetComponent<FlaskInitializer>();
+        if (isFlaskCountOverride)
         {
-            calculatedFlaskCount = 5;
+            flaskInitializer.FlaskCount = flaskCountOverride;
         }
         else
         {
-            calculatedFlaskCount = 5 + YandexGame.savesData.currentLevel / difficultDelimeter;
-        }
+            if (YandexGame.savesData.currentLevel >= 1 && YandexGame.savesData.currentLevel <= 4)
+            {
+                calculatedFlaskCount = 5;
+            }
+            else
+            {
+                calculatedFlaskCount = 5 + YandexGame.savesData.currentLevel / difficultDelimeter;
+            }
 
-        flaskInitializer = GetComponent<FlaskInitializer>();
-        flaskInitializer.FlaskCount = calculatedFlaskCount;
+            flaskInitializer.FlaskCount = calculatedFlaskCount;
+        }
+        if (flaskInitializer.FlaskCount >= 11)
+            flaskInitializer.FlaskRowCount = 6;
+        if (flaskInitializer.FlaskCount >= 13)
+        {
+            flaskInitializer.FlaskRowCount = 6;
+            if (_camera.aspect > 1)
+                GetComponent<CameraInitializer>().Margin = 1.2f;
+            if (_camera.aspect < 1)
+                GetComponent<CameraInitializer>().Margin = 0.85f;
+        }
         flaskInitializer.InitializeFlasks();
 
     }

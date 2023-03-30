@@ -101,6 +101,18 @@ public class BotInitializer : MonoBehaviour
                 return colors[5];
             case Colors.Cyan:
                 return colors[6];
+            case Colors.Purple:
+                return colors[7];
+            case Colors.White:
+                return colors[8];
+            case Colors.Grey:
+                return colors[9];
+            case Colors.PaleBlue:
+                return colors[10];
+            case Colors.Lime:
+                return colors[11];
+            case Colors.DarkModerateOrange:
+                return colors[12];
             default:
                 throw new Exception("Ќе удалось определить материал бота");
         }

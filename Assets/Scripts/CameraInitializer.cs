@@ -4,7 +4,9 @@ using UnityEngine;
 public class CameraInitializer : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private float margin = 0.9f;
+    [SerializeField] private float margin = 1.0f;
+
+    public float Margin { get => margin; set => margin = value; }
 
     public void InitializeCameraPositionAndRotation(GameObject[] flasks)
     {
