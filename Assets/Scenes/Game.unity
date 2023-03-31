@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 57643743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2139280611}
+        m_TargetAssemblyTypeName: DeveloperURLOpener, Assembly-CSharp
+        m_MethodName: OpenDeveloperURL
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: developer?name=MistGames
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57643743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +315,7 @@ MonoBehaviour:
   mainCamera: {fileID: 330585545}
   colorShowDuration: 0.35
   selectedFlaskController: {fileID: 0}
+  isEnabledReycastTargetting: 1
 --- !u!114 &95264915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +333,7 @@ MonoBehaviour:
     type: 3}
   flaskPrefab: {fileID: 6748222393500023823, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
     type: 3}
-  offsetX: 2.8
+  offsetX: 2.5
   offsetY: 0.25
   offsetZ: -5.8
   spawnedFlasks: []
@@ -438,7 +451,7 @@ MonoBehaviour:
   loadingPanel: {fileID: 1169261343}
   difficultDelimeter: 5
   isFlaskCountOverride: 0
-  flaskCountOverride: 10
+  flaskCountOverride: 15
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.5
   maxFlaskCount: 15
@@ -747,7 +760,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -932,6 +945,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &475132693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2211564899198745196, guid: caf9732433f4dc044845763962493607,
+    type: 3}
+  m_PrefabInstance: {fileID: 229899087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404d6214ebdd58d43a94c7ed650dc2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &578264864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3466,6 +3491,7 @@ GameObject:
   - component: {fileID: 2139280608}
   - component: {fileID: 2139280609}
   - component: {fileID: 2139280610}
+  - component: {fileID: 2139280611}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3605,6 +3631,7 @@ MonoBehaviour:
   BottomPanelGameObject: {fileID: 343259144}
   TopPanelGameObject: {fileID: 213635497}
   SettingsPanelGameObject: {fileID: 845404173}
+  platformRaycast: {fileID: 95264914}
 --- !u!114 &2139280610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3620,3 +3647,16 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 1e2b3e94a3a56174fa4a6b2bda909037, type: 2}
   SoundToggleOnGameObject: {fileID: 1583715215}
   SoundToggleOffGameObject: {fileID: 1401743005}
+--- !u!114 &2139280611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139280602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b79f210b291eb48890e084b08df498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yandexGame: {fileID: 475132693}

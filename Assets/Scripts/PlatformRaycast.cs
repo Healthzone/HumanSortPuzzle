@@ -15,26 +15,39 @@ public class PlatformRaycast : MonoBehaviour
     [SerializeField] private float colorShowDuration = 0.5f;
 
     [SerializeField] private FlaskController selectedFlaskController;
+
+    [SerializeField] private bool isEnabledReycastTargetting = true;
     private RaycastHit hit;
 
     private Color nullColor = new Color(0, 0, 0, 0);
 
+    public bool IsEnabledReycastTargetting { get => isEnabledReycastTargetting; set => isEnabledReycastTargetting = value; }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (isEnabledReycastTargetting)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            Ray castPoint = mainCamera.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, raycastLayer))
+            if (Input.GetMouseButtonDown(0))
             {
-                SelectFlask(hit);
-            }
+                Vector3 mousePosition = Input.mousePosition;
+                Ray castPoint = mainCamera.ScreenPointToRay(mousePosition);
+                if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, raycastLayer))
+                {
+                    SelectFlask(hit);
+                }
+                else if (selectedFlaskController != null)
+                {
+                    ChangeFlaskPlaneAlphaColor(selectedFlaskController);
+                    selectedFlaskController = null;
+                }
 
+            }
         }
     }
     private void SelectFlask(RaycastHit hit)
     {
         var hitFlask = hit.transform.GetComponent<FlaskController>();
+        Debug.Log(hitFlask);
 
         //Выбираем повторно ту же колбу
         if (hitFlask.Equals(selectedFlaskController))

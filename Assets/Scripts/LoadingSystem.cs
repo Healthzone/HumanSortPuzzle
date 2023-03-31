@@ -61,6 +61,8 @@ public class LoadingSystem : MonoBehaviour
             if (YandexGame.savesData.currentLevel >= 1 && YandexGame.savesData.currentLevel <= 4)
             {
                 calculatedFlaskCount = 5;
+                if (_camera.aspect < 1)
+                    GetComponent<CameraInitializer>().Margin = 1f;
             }
             else
             {
@@ -76,6 +78,11 @@ public class LoadingSystem : MonoBehaviour
                 flaskInitializer.FlaskCount = calculatedFlaskCount;
             }
         }
+
+        if (flaskInitializer.FlaskCount >= 6)
+            if (_camera.aspect < 1)
+                GetComponent<CameraInitializer>().Margin = 0.8f;
+
         if (flaskInitializer.FlaskCount >= 11)
             flaskInitializer.FlaskRowCount = 6;
 
@@ -84,8 +91,6 @@ public class LoadingSystem : MonoBehaviour
             flaskInitializer.FlaskRowCount = 6;
             if (_camera.aspect > 1)
                 GetComponent<CameraInitializer>().Margin = 1.2f;
-            if (_camera.aspect < 1)
-                GetComponent<CameraInitializer>().Margin = 0.85f;
         }
         flaskInitializer.InitializeFlasks();
 

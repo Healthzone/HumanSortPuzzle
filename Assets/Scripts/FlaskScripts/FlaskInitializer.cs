@@ -132,7 +132,8 @@ public class FlaskInitializer : MonoBehaviour
 
     public void AddNewFlask()
     {
-
+        loadingPanel.SetActive(true);
+        loadingPanel.GetComponent<CanvasGroup>().alpha = 1f;
         YandexGame.RewVideoShow(2);
     }
 
@@ -140,8 +141,6 @@ public class FlaskInitializer : MonoBehaviour
     {
         if (id == 2)
         {
-            loadingPanel.SetActive(true);
-            loadingPanel.GetComponent<CanvasGroup>().alpha = 1f;
             InitializeFlasks(true);
             addNewFlaskBtn.GetComponent<Button>().interactable = false;
         }
