@@ -107,5 +107,6 @@ public class ReverseActionSystem : MonoBehaviour
         reverseActionsCount = 2;
         imageReverseAction.sprite = reverse2Action;
         imageReverseAction.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
+        _reverseElements.Clear();
     }
 }

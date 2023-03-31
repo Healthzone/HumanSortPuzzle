@@ -1,15 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using YG;
-using YG.Example;
 
 public class FlaskInitializer : MonoBehaviour
 {
@@ -142,12 +136,15 @@ public class FlaskInitializer : MonoBehaviour
         YandexGame.RewVideoShow(2);
     }
 
-    private void AddNewFlaskRewarded(int obj)
+    private void AddNewFlaskRewarded(int id)
     {
-        loadingPanel.SetActive(true);
-        loadingPanel.GetComponent<CanvasGroup>().alpha = 1f;
-        InitializeFlasks(true);
-        addNewFlaskBtn.GetComponent<UnityEngine.UI.Button>().interactable = false;
+        if (id == 2)
+        {
+            loadingPanel.SetActive(true);
+            loadingPanel.GetComponent<CanvasGroup>().alpha = 1f;
+            InitializeFlasks(true);
+            addNewFlaskBtn.GetComponent<Button>().interactable = false;
+        }
 
     }
     private void StartInitializingBots(GameObject[] flasks)

@@ -173,7 +173,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
@@ -527,7 +527,7 @@ PlayerSettings:
     BANNER_STATIC_2: 
     METRIC: 
     OFF_ADS_BEFORE_LOADING_GAME: 
-    PIXEL_RATIO_MOBILE: 
+    PIXEL_RATIO_MOBILE: 1.5
     PRODUCT_DESCRIPTION: 
   mobileMTRendering:
     Android: 1
