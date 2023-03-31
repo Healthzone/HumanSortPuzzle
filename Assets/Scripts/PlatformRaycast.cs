@@ -47,7 +47,6 @@ public class PlatformRaycast : MonoBehaviour
     private void SelectFlask(RaycastHit hit)
     {
         var hitFlask = hit.transform.GetComponent<FlaskController>();
-        Debug.Log(hitFlask);
 
         //Выбираем повторно ту же колбу
         if (hitFlask.Equals(selectedFlaskController))
