@@ -10,6 +10,7 @@ public class FlaskController : MonoBehaviour
 {
     [SerializeField] private Transform[] flaskPositions = new Transform[4];
     [SerializeField] private int nextEmptyPositionIndex = -1;
+    [SerializeField] private ParticleSystem flaskParticles;
 
     private Stack<Color> colors = new Stack<Color>();
     private Stack<GameObject> bots = new Stack<GameObject>();
@@ -17,6 +18,8 @@ public class FlaskController : MonoBehaviour
     private GameObject flaskPlane;
 
     private bool isFilledByOneColor = false;
+
+    private bool isLevelEnd;
 
     #region Properties
     public GameObject FlaskPlane { get => flaskPlane; }
@@ -30,11 +33,21 @@ public class FlaskController : MonoBehaviour
     private void Awake()
     {
         GlobalEvents.OnBotsInitialized.AddListener(InitializeComponent);
+        GlobalEvents.OnLevelEnd.AddListener(TriggerLevelEnd);
+        GlobalEvents.OnLevelEnd.AddListener(PlayFlaskParticle);
 
     }
+
+    private void TriggerLevelEnd(int arg0)
+    {
+        isLevelEnd = true;
+    }
+
     private void OnDisable()
     {
+        GlobalEvents.OnLevelEnd.RemoveListener(PlayFlaskParticle);
         GlobalEvents.OnBotsInitialized.RemoveListener(InitializeComponent);
+        GlobalEvents.OnLevelEnd.RemoveListener(TriggerLevelEnd);
     }
 
     public void InitializeComponent(Bot[] bots = null, bool restart = false)
@@ -141,9 +154,22 @@ public class FlaskController : MonoBehaviour
         {
             GetComponent<MeshRenderer>().material.color = Colors.Peek();
             GlobalEvents.SendFlaskFilledByOneColor();
+            PlayFlaskParticle();
             return true;
         }
         return false;
+    }
+
+    private void PlayFlaskParticle(int arg0 = 0)
+    {
+        if (isLevelEnd)
+        {
+            var main = flaskParticles.main;
+            main.loop = true;
+        }
+
+        flaskParticles.gameObject.SetActive(true);
+        flaskParticles.Play();
     }
 
     /// <summary>
