@@ -19,6 +19,6 @@ public class LevelNumberLabel : MonoBehaviour
 
     private void SetLevelLabel()
     {
-        GetComponent<TextMeshProUGUI>().text = "Уровень " + YandexGame.savesData.currentLevel;
+        GetComponent<TextMeshProUGUI>().text = YandexGame.savesData.currentLevel.ToString();
     }
 }

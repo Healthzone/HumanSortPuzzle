@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 #if UNITY_EDITOR
 using System.Collections;
@@ -92,6 +93,8 @@ namespace YG
                 textUIComponent.text = translation;
             else if (textMeshComponent)
                 textMeshComponent.text = translation;
+            else
+                GetComponent<TextMeshProUGUI>().text = translation;
         }
 
         public void ChangeFont(Font[] fontArray)
