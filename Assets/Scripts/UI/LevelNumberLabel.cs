@@ -13,7 +13,7 @@ public class LevelNumberLabel : MonoBehaviour
 
     private void Start()
     {
-        if (YandexGame.SDKEnabled == true)
+        if (YandexGame.SDKEnabled)
             SetLevelLabel();
     }
 

@@ -13,7 +13,7 @@ namespace YG
             YandexGame.GetDataEvent += GetPlayerData;
             YandexGame.SwitchLangEvent += GetName;
 
-            if (YandexGame.SDKEnabled == true)
+            if (YandexGame.SDKEnabled)
             {
                 GetPlayerData();
             }

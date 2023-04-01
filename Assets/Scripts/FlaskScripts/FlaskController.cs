@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using YG;
 
 public class FlaskController : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class FlaskController : MonoBehaviour
         InitializeBotPositions();
         isFilledByOneColor = false;
         GetComponent<MeshRenderer>().material.color = new Color(0.7830188f, 0.7830188f, 0.7830188f);
+        if (YandexGame.savesData.currentLevel < 5 && YandexGame.SDKEnabled && colors.Count != 0)
+            CheckFilledFlask();
         if (!restart)
             GlobalEvents.SendFlaskControllerInitialized();
     }
@@ -91,7 +94,7 @@ public class FlaskController : MonoBehaviour
         flaskPlane = transform.Find("Plane").gameObject;
     }
 
-    private bool CheckFlaskColorFill()
+    private bool CheckStackColorFill()
     {
         Color firstColor;
         IEnumerator<Color> enumerator = colors.GetEnumerator();
@@ -126,15 +129,21 @@ public class FlaskController : MonoBehaviour
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
         //if (bot.GetComponent<NavMeshAgent>().velocity.magnitude == 0)
         bot.GetComponent<Animator>().SetBool("IsRunning", true);
+        CheckFilledFlask();
 
-        isFilledByOneColor = CheckFlaskColorFill();
+        return Bots.Count == 4 ? false : true;
+    }
+
+    private bool CheckFilledFlask()
+    {
+        isFilledByOneColor = CheckStackColorFill();
         if (isFilledByOneColor)
         {
             GetComponent<MeshRenderer>().material.color = Colors.Peek();
             GlobalEvents.SendFlaskFilledByOneColor();
+            return true;
         }
-
-        return Bots.Count == 4 ? false : true;
+        return false;
     }
 
     /// <summary>

@@ -12,6 +12,8 @@ public class LoadingSystem : MonoBehaviour
     [SerializeField] private int difficultDelimeter = 5;
     [SerializeField] private bool isFlaskCountOverride;
     [SerializeField] private int flaskCountOverride;
+    [SerializeField] private bool isLevelOvveride;
+    [SerializeField] private int levelOverride;
     [SerializeField] private Animation loadingFadeAnimation;
     [SerializeField] private float preLoadingDelay = 0.5f;
     [SerializeField] private int maxFlaskCount = 15;
@@ -44,6 +46,11 @@ public class LoadingSystem : MonoBehaviour
     }
     private void StartGame()
     {
+        if (isLevelOvveride)
+        {
+            YandexGame.savesData.currentLevel = levelOverride;
+            YandexGame.SaveProgress();
+        }
         flaskInitializer = GetComponent<FlaskInitializer>();
         if (isFlaskCountOverride)
         {
@@ -103,7 +110,7 @@ public class LoadingSystem : MonoBehaviour
 
     private void Start()
     {
-        if (YandexGame.SDKEnabled == true)
+        if (YandexGame.SDKEnabled)
             BeginLoading();
     }
 }

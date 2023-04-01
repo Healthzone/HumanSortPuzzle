@@ -39,6 +39,7 @@ public class PlatformRaycast : MonoBehaviour
                 {
                     ChangeFlaskPlaneAlphaColor(selectedFlaskController);
                     selectedFlaskController = null;
+                    GlobalEvents.SendFlaskSelected();
                 }
 
             }
@@ -53,6 +54,7 @@ public class PlatformRaycast : MonoBehaviour
         {
             ChangeFlaskPlaneAlphaColor(selectedFlaskController);
             selectedFlaskController = null;
+            GlobalEvents.SendFlaskSelected();
             return;
         }
 
@@ -69,6 +71,7 @@ public class PlatformRaycast : MonoBehaviour
             {
                 selectedFlaskController = flaskController;
                 HighlightFlaskPlane(selectedFlaskController);
+                GlobalEvents.SendFlaskSelected();
             }
         }
         //Выбираем вторую колбу и пытаемся переместить ботов
@@ -76,6 +79,7 @@ public class PlatformRaycast : MonoBehaviour
         {
             HighlightSecondFlaskPlane(hitFlask.gameObject.GetComponent<FlaskController>());
             TryTranslateBots(hitFlask.gameObject);
+            GlobalEvents.SendFlaskSelected();
 
         }
 
