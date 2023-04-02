@@ -29,7 +29,7 @@ public class AudioSystem : MonoBehaviour
     {
         audioSource.PlayOneShot(clips[currentSoundIndex]);
         currentSoundIndex++;
-        if (currentSoundIndex == 12)
+        if (currentSoundIndex == 22)
             currentSoundIndex = 0;
     }
 }

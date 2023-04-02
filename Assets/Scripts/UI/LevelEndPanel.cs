@@ -7,6 +7,8 @@ public class LevelEndPanel : MonoBehaviour
 {
     [SerializeField] private GameObject LevelEndPanelGameObject;
     [SerializeField] private float endPanelDelay = 1f;
+    [SerializeField] private GameObject topPanel;
+    [SerializeField] private GameObject bottomPanel;
     private void OnEnable()
     {
         GlobalEvents.OnLevelEnd.AddListener(ShowLevelEndPanel);
@@ -14,7 +16,8 @@ public class LevelEndPanel : MonoBehaviour
 
     private void ShowLevelEndPanel(int arg0)
     {
-
+        topPanel.SetActive(false);
+        bottomPanel.SetActive(false);
         StartCoroutine(WaitDelayToShowEndPanel());
     }
 

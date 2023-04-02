@@ -11,7 +11,7 @@ namespace YG
         public bool promptDone;
 
         public int currentLevel = 1;
-        public bool suggestedReview = false;
+        public bool isSuggestedReview = false;
         public SavesYG()
         {
         }

@@ -13,17 +13,19 @@ public class ReviewPanel : MonoBehaviour
     private void OnEnable()
     {
         YandexGame.GetDataEvent += TryEnableReviewPanel;
+        YandexGame.ReviewSentEvent += CloseReviewPanel;
     }
     private void OnDisable()
     {
         YandexGame.GetDataEvent -= TryEnableReviewPanel;
+        YandexGame.ReviewSentEvent -= CloseReviewPanel;
     }
 
     private void TryEnableReviewPanel()
     {
         if ((YandexGame.savesData.currentLevel == 10 || YandexGame.savesData.currentLevel > 10)
             && (YandexGame.EnvironmentData.reviewCanShow || isEditorMode)
-            && !YandexGame.savesData.suggestedReview)
+            && !YandexGame.savesData.isSuggestedReview)
             GlobalEvents.OnLevelEnd.AddListener(ActivateReviewPanel);
     }
 
@@ -43,12 +45,11 @@ public class ReviewPanel : MonoBehaviour
         }
     }
 
-    public void CloseReviewPanel()
+    public void CloseReviewPanel(bool sent)
     {
         reviewPanel.SetActive(false);
-        YandexGame.savesData.suggestedReview = true;
+        YandexGame.savesData.isSuggestedReview = true;
         YandexGame.SaveProgress();
-        Debug.Log(YandexGame.savesData.suggestedReview);
     }
     public void Review()
     {

@@ -331,7 +331,7 @@ MonoBehaviour:
   flaskRowCount: 5
   groundPrefab: {fileID: 755424215410949054, guid: a80048aae45336f49a58d69d67d61f1d,
     type: 3}
-  flaskPrefab: {fileID: 6748222393500023823, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
+  flaskPrefab: {fileID: 2259128348395617453, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
     type: 3}
   offsetX: 2.5
   offsetY: 0.25
@@ -451,9 +451,9 @@ MonoBehaviour:
   loadingPanel: {fileID: 1169261343}
   difficultDelimeter: 5
   isFlaskCountOverride: 0
-  flaskCountOverride: 15
+  flaskCountOverride: 8
   isLevelOvveride: 0
-  levelOverride: 1
+  levelOverride: 100
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.5
   maxFlaskCount: 15
@@ -962,10 +962,10 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 0
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_UseScreenCoordOverride: 0
@@ -4243,6 +4243,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0f0caad729744564985c294598ab070c, type: 3}
   - {fileID: 8300000, guid: dfe6085a32e28e9469c268d4fef72179, type: 3}
   - {fileID: 8300000, guid: 46c5c446bf393ff458fc58529a3d4470, type: 3}
+  - {fileID: 8300000, guid: dfe6085a32e28e9469c268d4fef72179, type: 3}
+  - {fileID: 8300000, guid: 0f0caad729744564985c294598ab070c, type: 3}
+  - {fileID: 8300000, guid: 1f4921c98df898147aa6449c4c01dca3, type: 3}
+  - {fileID: 8300000, guid: 572b32f31580f634eacb6ea32ddeb003, type: 3}
+  - {fileID: 8300000, guid: 5851e9e1ad958f842bc625b8ba523330, type: 3}
+  - {fileID: 8300000, guid: 11c3804f5cec4554490c7c7fab84adbd, type: 3}
+  - {fileID: 8300000, guid: 40db895430577864fb996b0fda64ae4e, type: 3}
+  - {fileID: 8300000, guid: 8484da72ebe73b345ba2362c4688d7d6, type: 3}
+  - {fileID: 8300000, guid: efc1dd3e04d643341a367bacc71c8f6d, type: 3}
+  - {fileID: 8300000, guid: 99ffa02d54ab8ce4cb434ef66e8c8e7e, type: 3}
   currentSoundIndex: 0
 --- !u!1 &1583715215
 GameObject:
@@ -4757,8 +4767,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0414\u0440\u0443\u0433\u0438\u0435 \u0438\u0433\u0440\u044B \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5514,6 +5524,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
   endPanelDelay: 3
+  topPanel: {fileID: 213635497}
+  bottomPanel: {fileID: 343259144}
 --- !u!111 &2139280608
 Animation:
   m_ObjectHideFlags: 0
