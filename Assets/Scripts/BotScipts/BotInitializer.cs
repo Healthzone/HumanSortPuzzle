@@ -13,34 +13,49 @@ public class BotInitializer : MonoBehaviour
 
     private Material[] colors;
 
+    private int emptyFlask1;
+    private int emptyFlask2;
+    private int? emptyFlask3;
+
     public void Initialize(GameObject[] flasks)
     {
         var colorsConstant = GetComponent<ColorConstants>();
         colors = colorsConstant.BotsMaterial;
-        bots = new Bot[(flasks.Length - 2) * 4];
+        bots = new Bot[(flasks.Length - FlaskInitializer.emptyFlaskCount) * 4];
 
         for (int i = 0; i < bots.Length; i++)
         {
             bots[i] = new Bot();
         }
 
-        //Случайно определяем две пустые колбы
-        #region Опредеяем пустые колбы
-        System.Random rnd = new System.Random();
-        int emptyFlask1 = rnd.Next(0, flasks.Length);
-        int emptyFlask2;
-        do
+        //Случайно определяем индексы пустых колб
+        if (FlaskInitializer.emptyFlaskCount == 2)
         {
-            emptyFlask2 = rnd.Next(0, flasks.Length);
+            System.Random rnd = new System.Random();
+            emptyFlask1 = rnd.Next(0, flasks.Length);
+            do
+            {
+                emptyFlask2 = rnd.Next(0, flasks.Length);
+            }
+            while (emptyFlask1 == emptyFlask2);
         }
-        while (emptyFlask1 == emptyFlask2);
-        #endregion
+        else
+        {
+            System.Random rnd = new System.Random();
+            emptyFlask1 = rnd.Next(0, flasks.Length);
+            do
+            {
+                emptyFlask2 = rnd.Next(0, flasks.Length);
+                emptyFlask3 = rnd.Next(0, flasks.Length);
+            }
+            while ((emptyFlask1 == emptyFlask2) || (emptyFlask1 == emptyFlask3) || (emptyFlask2 == emptyFlask3));
+        }
 
-        GenerateRandomColors(flasks.Length - 2);
+        GenerateRandomColors(flasks.Length - FlaskInitializer.emptyFlaskCount);
         int flaskCount = 0;
         for (int i = 0; i < flasks.Length; i++)
         {
-            if (i == emptyFlask1 || i == emptyFlask2)
+            if (i == emptyFlask1 || i == emptyFlask2 || i == emptyFlask3)
                 continue;
             IntstantiateBots(flasks[i], flaskCount);
             flaskCount++;

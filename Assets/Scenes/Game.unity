@@ -452,11 +452,11 @@ MonoBehaviour:
   difficultDelimeter: 5
   isFlaskCountOverride: 0
   flaskCountOverride: 5
-  isLevelOvveride: 0
-  levelOverride: 1
+  isLevelOvveride: 1
+  levelOverride: 10
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.5
-  maxFlaskCount: 15
+  maxFlaskCount: 16
 --- !u!1 &180988549
 GameObject:
   m_ObjectHideFlags: 0
@@ -5523,7 +5523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
-  endPanelDelay: 3.5
+  endPanelDelay: 4
   topPanel: {fileID: 213635497}
   bottomPanel: {fileID: 343259144}
 --- !u!111 &2139280608

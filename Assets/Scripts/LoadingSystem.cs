@@ -94,6 +94,10 @@ public class LoadingSystem : MonoBehaviour
             if (_camera.aspect < 1)
                 GetComponent<CameraInitializer>().Margin = 0.75f;
 
+        if (flaskInitializer.FlaskCount >= 16)
+            if (_camera.aspect < 1)
+                GetComponent<CameraInitializer>().Margin = 0.6f;
+
         if (flaskInitializer.FlaskCount >= 13)
         {
             flaskInitializer.FlaskRowCount = 5;

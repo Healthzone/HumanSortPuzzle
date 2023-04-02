@@ -7,6 +7,7 @@ using YG;
 
 public class FlaskInitializer : MonoBehaviour
 {
+    public static int emptyFlaskCount = 2;
     private int flaskCount;
     [SerializeField] private int flaskRowCount;
 
@@ -39,7 +40,9 @@ public class FlaskInitializer : MonoBehaviour
 
     public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
-        filledFlask = flaskCount - 2;
+        if (YandexGame.savesData.currentLevel >= 45)
+            emptyFlaskCount = 3;
+        filledFlask = flaskCount - emptyFlaskCount;
         if (isNeedToAddNewFlask)
         {
             flaskCount++;
@@ -127,7 +130,7 @@ public class FlaskInitializer : MonoBehaviour
             if (Camera.main.aspect >= 0.7f && Camera.main.aspect < 1 && FlaskCount == 16)
                 GetComponent<CameraInitializer>().Margin = 0.75f;
             if (Camera.main.aspect < 1 && FlaskCount == 11)
-                GetComponent<CameraInitializer>().Margin = 0.8f;
+                GetComponent<CameraInitializer>().Margin = 0.7f;
             return;
         }
         for (int i = 0; i < calculatedPositions.Count; i++)
