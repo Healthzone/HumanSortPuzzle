@@ -122,8 +122,10 @@ public class FlaskInitializer : MonoBehaviour
             }
             spawnedFlasks[flaskCount - 1] = Instantiate(flaskPrefab, calculatedPositions[calculatedPositions.Count - 1], flaskPrefab.transform.rotation, spawnedGround.transform);
             spawnedFlasks[flaskCount - 1].GetComponent<FlaskController>().InitializeComponent();
-            if (Camera.main.aspect < 1 && FlaskCount == 16)
-                GetComponent<CameraInitializer>().Margin = 0.7f;
+            if (Camera.main.aspect < 0.7f && FlaskCount == 16)
+                GetComponent<CameraInitializer>().Margin = 0.6f;
+            if (Camera.main.aspect >= 0.7f && Camera.main.aspect < 1 && FlaskCount == 16)
+                GetComponent<CameraInitializer>().Margin = 0.75f;
             if (Camera.main.aspect < 1 && FlaskCount == 11)
                 GetComponent<CameraInitializer>().Margin = 0.8f;
             return;

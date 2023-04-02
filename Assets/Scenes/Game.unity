@@ -313,7 +313,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mainCamera: {fileID: 330585545}
-  colorShowDuration: 0.35
+  colorShowDuration: 0.25
   selectedFlaskController: {fileID: 0}
   isEnabledReycastTargetting: 1
 --- !u!114 &95264915
@@ -451,9 +451,9 @@ MonoBehaviour:
   loadingPanel: {fileID: 1169261343}
   difficultDelimeter: 5
   isFlaskCountOverride: 0
-  flaskCountOverride: 8
+  flaskCountOverride: 5
   isLevelOvveride: 0
-  levelOverride: 100
+  levelOverride: 1
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.5
   maxFlaskCount: 15
@@ -4446,7 +4446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u0430\u043B\u044C\u0448\u0435"
+  m_text: "\u0414\u0430\u043B\u0435\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4539,7 +4539,7 @@ MonoBehaviour:
   textMeshComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
-  ru: "\u0414\u0430\u043B\u044C\u0448\u0435"
+  ru: "\u0414\u0430\u043B\u0435\u0435"
   en: Next
   tr: 
   az: 
@@ -4659,7 +4659,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2139280613}
         m_TargetAssemblyTypeName: ReviewPanel, Assembly-CSharp
         m_MethodName: CloseReviewPanel
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5523,7 +5523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
-  endPanelDelay: 3
+  endPanelDelay: 3.5
   topPanel: {fileID: 213635497}
   bottomPanel: {fileID: 343259144}
 --- !u!111 &2139280608

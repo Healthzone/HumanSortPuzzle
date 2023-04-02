@@ -158,25 +158,25 @@ public class PlatformRaycast : MonoBehaviour
     private void HighlightSecondFlaskPlane(FlaskController flask)
     {
         flask.Colors.TryPeek(out Color result);
-        if (result != nullColor)
-        {
-            flask.FlaskPlane.SetActive(true);
-            var material = flask.FlaskPlane.GetComponent<MeshRenderer>().material;
-            var color = Color.clear;
-            material.color = color;
-            DOTween.Sequence()
-                .Append(material.DOColor(result, colorShowDuration / 2))
-                .OnComplete(() =>
-                    {
-                        color = material.color;
-                        color.a = 0f;
-                    })
-                .Append(material.DOColor(color, colorShowDuration / 2))
-                .OnComplete(() =>
-                     {
-                         flask.FlaskPlane.SetActive(false);
-                     });
-        }
 
+        if (result == nullColor)
+            selectedFlaskController.Colors.TryPeek(out result);
+        flask.FlaskPlane.SetActive(true);
+        var material = flask.FlaskPlane.GetComponent<MeshRenderer>().material;
+        var color = Color.clear;
+        material.color = color;
+        DOTween.Sequence()
+            .Append(material.DOColor(result, colorShowDuration / 2))
+            .OnComplete(() =>
+                {
+                    color = material.color;
+                    color.a = 0f;
+                })
+            .Append(material.DOColor(color, colorShowDuration / 2))
+            .OnComplete(() =>
+                 {
+                     flask.FlaskPlane.SetActive(false);
+                 });
     }
+
 }
