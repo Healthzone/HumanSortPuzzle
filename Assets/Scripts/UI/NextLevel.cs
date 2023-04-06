@@ -8,7 +8,6 @@ public class NextLevel : MonoBehaviour
 {
     public void GoToNextLevel()
     {
-        YandexGame.FullscreenShow();
         SceneManager.LoadScene("Game");
     }
 }

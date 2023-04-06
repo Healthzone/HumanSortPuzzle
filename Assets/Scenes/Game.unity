@@ -451,9 +451,9 @@ MonoBehaviour:
   loadingPanel: {fileID: 1169261343}
   difficultDelimeter: 5
   isFlaskCountOverride: 0
-  flaskCountOverride: 5
-  isLevelOvveride: 1
-  levelOverride: 10
+  flaskCountOverride: 16
+  isLevelOvveride: 0
+  levelOverride: 55
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.5
   maxFlaskCount: 16
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 1
+  m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_UseScreenCoordOverride: 0
@@ -5524,6 +5524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
   endPanelDelay: 4
+  adsDelayShow: 0.5
   topPanel: {fileID: 213635497}
   bottomPanel: {fileID: 343259144}
 --- !u!111 &2139280608

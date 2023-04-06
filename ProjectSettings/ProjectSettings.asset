@@ -133,7 +133,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 1.0.0.0
+  bundleVersion: 1.0.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -527,7 +527,7 @@ PlayerSettings:
     BANNER_STATIC_2: 
     METRIC: 
     OFF_ADS_BEFORE_LOADING_GAME: 
-    PIXEL_RATIO_MOBILE: 1.75
+    PIXEL_RATIO_MOBILE: 1.65
     PRODUCT_DESCRIPTION: 
   mobileMTRendering:
     Android: 1

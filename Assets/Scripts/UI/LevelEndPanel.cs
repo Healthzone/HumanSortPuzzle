@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class LevelEndPanel : MonoBehaviour
 {
     [SerializeField] private GameObject LevelEndPanelGameObject;
     [SerializeField] private float endPanelDelay = 1f;
+    [SerializeField] private float adsDelayShow = 0.5f;
     [SerializeField] private GameObject topPanel;
     [SerializeField] private GameObject bottomPanel;
     private void OnEnable()
@@ -25,6 +27,13 @@ public class LevelEndPanel : MonoBehaviour
     {
         yield return new WaitForSeconds(endPanelDelay);
         LevelEndPanelGameObject.SetActive(true);
+        StartCoroutine(AdsShowDelayed());
 
+    }
+
+    private IEnumerator AdsShowDelayed()
+    {
+        yield return new WaitForSeconds(adsDelayShow);
+        YandexGame.FullscreenShow();
     }
 }
