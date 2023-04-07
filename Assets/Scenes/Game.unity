@@ -455,7 +455,7 @@ MonoBehaviour:
   isLevelOvveride: 0
   levelOverride: 55
   loadingFadeAnimation: {fileID: 2139280608}
-  preLoadingDelay: 0.5
+  preLoadingDelay: 0.25
   maxFlaskCount: 16
 --- !u!1 &180988549
 GameObject:
@@ -5524,7 +5524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelEndPanelGameObject: {fileID: 594110844}
   endPanelDelay: 4
-  adsDelayShow: 0.5
+  adsDelayShow: 0.25
   topPanel: {fileID: 213635497}
   bottomPanel: {fileID: 343259144}
 --- !u!111 &2139280608

@@ -145,7 +145,10 @@ mergeInto(LibraryManager.library,
         stringToUTF8(returnStr, buffer, bufferSize);
 		
         return buffer;
-    }
+    },
+	UserOpenOtherGameButton: function(){
+		UserOpenOtherGameButton();
+	}
 });
 
 var FileIO = {

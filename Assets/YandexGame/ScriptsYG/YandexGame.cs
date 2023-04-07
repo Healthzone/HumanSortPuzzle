@@ -350,7 +350,7 @@ namespace YG
         public void _AuthorizationCheck()
         {
 #if !UNITY_EDITOR
-            AuthorizationCheck( _photoSize, infoYG.scopes);
+            AuthorizationCheck(_photoSize, infoYG.scopes);
 #else
             SetAuthorization(@"{""playerAuth""" + ": " + @"""resolved""," + @"""playerName""" + ": " + @"""Ivan"", " + @"""playerId""" + ": " + @"""tOpLpSh7i8QG8Voh/SuPbeS4NKTj1OxATCTKQF92H4c="", " + @"""playerPhoto""" + ": " + @"""https://s381vla.storage.yandex.net/rdisk/6abebb2a2211159542df567e57bfd89c1a255305976455254fa0868910ffee57/6411b0ef/MemHQzsnZ2QE1ElANeLrWFkY7msmjkjvvw3wr5Q3giJMw53O6EAdzMrOYQICwbZg-LoS5wxafS5y5wTAMD_Fvg==?uid=325055514&filename=Player1.png&disposition=attachment&hash=&limit=0&content_type=image%2Fpng&owner_uid=325055514&fsize=13889&hid=3e22053d8e718b72893d54dd40d4a9a4&media_type=image&tknv=v2&etag=580b6bd8bc6fece28dc421e843492530&rtoken=FpFeHH6hXRuP&force_default=yes&ycrid=na-9b1d66ffc5d1eb5916adefb0f09568f7-downloader6e&ts=5f6eef20ad9c0&s=18045c1538c3df7e6a7ed187a974d6187e60b38016c6954192293e28d75f6137&pb=U2FsdGVkX1_6u1ORoSa9iHDfKDutmhz2XF4JKGHGS0cFuGWQRGb1QHcsjQ5iIU5jatOlaEy_94BwSLyElTEu-mmPLqkq2KONLzj9yGv2Yes""}");
 #endif
@@ -379,7 +379,7 @@ namespace YG
         public void _OpenAuthDialog()
         {
 #if !UNITY_EDITOR
-                    OpenAuthDialog(_photoSize, _scopes);
+            OpenAuthDialog(_photoSize, _scopes);
 #endif
 #if UNITY_EDITOR
             Message("Open Auth Dialog");
@@ -389,7 +389,7 @@ namespace YG
         public static void AuthDialog()
         {
 #if !UNITY_EDITOR
-                    OpenAuthDialog(_photoSize, _scopes);
+            OpenAuthDialog(_photoSize, _scopes);
 #endif
 #if UNITY_EDITOR
             Message("Open Auth Dialog");
@@ -544,13 +544,22 @@ namespace YG
         #endregion Requesting Environment Data
 
         #region URL
+        [DllImport("__Internal")]
+        private static extern void UserOpenOtherGameButton();
         public void _OnURL_Yandex_DefineDomain(string url)
         {
             Message("URL yandex.DefineDomain");
 #if !UNITY_EDITOR
             if (EnvironmentData.domain != null && EnvironmentData.domain != "")
+            {
                 Application.OpenURL("https://yandex." + EnvironmentData.domain + "/games/" + url);
-            else Debug.LogError("OnURL_Yandex_DefineDomain: Domain not defined!");
+                UserOpenOtherGameButton();
+            }
+            else
+            {
+                Debug.LogError("OnURL_Yandex_DefineDomain: Domain not defined!");
+            }
+
 #endif
 #if UNITY_EDITOR
             Application.OpenURL("https://yandex." + "ru/games/" + url);
@@ -571,7 +580,7 @@ namespace YG
         public static void NewLeaderboardScores(string nameLB, int score)
         {
 #if !UNITY_EDITOR
-            if (_leaderboardEnable) 
+            if (_leaderboardEnable)
                 SetLeaderboardScores(nameLB, score);
 #endif
             if (_leaderboardEnable)
