@@ -34,6 +34,8 @@ public class FlaskInitializer : MonoBehaviour
     public int FilledFlask { get => filledFlask; }
     public int FlaskCount { get => flaskCount; set => flaskCount = value; }
     public int FlaskRowCount { get => flaskRowCount; set => flaskRowCount = value; }
+    public GameObject[] SpawnedFlasks { get => spawnedFlasks;}
+
     private void OnEnable() => YandexGame.RewardVideoEvent += AddNewFlaskRewarded;
 
     private void OnDisable() => YandexGame.RewardVideoEvent -= AddNewFlaskRewarded;
@@ -152,6 +154,7 @@ public class FlaskInitializer : MonoBehaviour
         {
             InitializeFlasks(true);
             addNewFlaskBtn.GetComponent<Button>().interactable = false;
+            GlobalEvents.SendNewFlaskAdded();
         }
 
     }

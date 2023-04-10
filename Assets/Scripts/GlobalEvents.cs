@@ -12,6 +12,7 @@ public class GlobalEvents : MonoBehaviour
     public static UnityEvent OnFlaskFilledByOneColor = new UnityEvent();
     public static UnityEvent OnFlaskSelected = new UnityEvent();
     public static UnityEvent<int> OnLevelEnd = new UnityEvent<int>();
+    public static UnityEvent<int> OnBotMoveStarted = new UnityEvent<int>();
 
     public static void SendFlaskInitialized()
     {
@@ -41,6 +42,10 @@ public class GlobalEvents : MonoBehaviour
     public static void SendFlaskSelected()
     {
         OnFlaskSelected.Invoke();
+    }
+    public static void SendBotMoveStarts(int id)
+    {
+        OnBotMoveStarted.Invoke(id);
     }
 
 }
