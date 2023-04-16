@@ -42,7 +42,7 @@ public class FlaskInitializer : MonoBehaviour
 
     public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
-        if (YandexGame.savesData.currentLevel >= 45)
+        if (YandexGame.savesData.currentLevel >= 35)
             emptyFlaskCount = 3;
         filledFlask = flaskCount - emptyFlaskCount;
         if (isNeedToAddNewFlask)

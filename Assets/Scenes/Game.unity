@@ -454,7 +454,7 @@ MonoBehaviour:
   isFlaskCountOverride: 0
   flaskCountOverride: 16
   isLevelOvveride: 0
-  levelOverride: 55
+  levelOverride: 100
   loadingFadeAnimation: {fileID: 2139280608}
   preLoadingDelay: 0.25
   maxFlaskCount: 16
@@ -471,6 +471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addNewFlaskButton: {fileID: 1705957369}
+  isNewFlaskAdded: 0
+  currentrlyMovingBotsCount: 0
 --- !u!1 &180988549
 GameObject:
   m_ObjectHideFlags: 0
