@@ -1760,6 +1760,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuStickman
       objectReference: {fileID: 0}
+    - target: {fileID: 193624992505743688, guid: 17870afe89d933e479085dc505a9479b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 903461925721823130, guid: 17870afe89d933e479085dc505a9479b,
         type: 3}
       propertyPath: m_RootOrder

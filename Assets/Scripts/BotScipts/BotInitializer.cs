@@ -93,7 +93,8 @@ public class BotInitializer : MonoBehaviour
         foreach (var bot in bots)
         {
             //MaterialPropertyBlock propertyBlock = 
-            //bot.SpawnedBot.GetComponent<MeshRenderer>().sharedMaterial = null;
+            bot.SpawnedBot.GetComponentInChildren<SkinnedMeshRenderer>().material = null;
+            bot.SpawnedBot.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = null;
             bot.SpawnedBot.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial = SelectColorConstant(bot.BotColor);
         }
     }
