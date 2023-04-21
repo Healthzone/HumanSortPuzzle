@@ -34,13 +34,15 @@ public class FlaskInitializer : MonoBehaviour
     public int FilledFlask { get => filledFlask; }
     public int FlaskCount { get => flaskCount; set => flaskCount = value; }
     public int FlaskRowCount { get => flaskRowCount; set => flaskRowCount = value; }
+    public GameObject[] SpawnedFlasks { get => spawnedFlasks;}
+
     private void OnEnable() => YandexGame.RewardVideoEvent += AddNewFlaskRewarded;
 
     private void OnDisable() => YandexGame.RewardVideoEvent -= AddNewFlaskRewarded;
 
     public void InitializeFlasks(bool isNeedToAddNewFlask = false)
     {
-        if (YandexGame.savesData.currentLevel >= 45)
+        if (YandexGame.savesData.currentLevel >= 35)
             emptyFlaskCount = 3;
         filledFlask = flaskCount - emptyFlaskCount;
         if (isNeedToAddNewFlask)
@@ -152,6 +154,7 @@ public class FlaskInitializer : MonoBehaviour
         {
             InitializeFlasks(true);
             addNewFlaskBtn.GetComponent<Button>().interactable = false;
+            GlobalEvents.SendNewFlaskAdded();
         }
 
     }

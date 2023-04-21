@@ -54,6 +54,7 @@ public class BotAnimationController : MonoBehaviour
             animator.SetBool("IsRunning", false);
             isRunning = false;
             GetComponent<Transform>().localEulerAngles = new Vector3(0f, 90f, 0f);
+            GlobalEvents.SendBotMoveStarts(-1);
         }
     }
 
