@@ -31,7 +31,8 @@ public class FinishGameHandler : MonoBehaviour
             int animIndex = UnityEngine.Random.Range(0, 4);
             YandexGame.savesData.currentLevel++;
             YandexGame.SaveProgress();
-            YandexGame.NewLeaderboardScores("topPlayers", YandexGame.savesData.currentLevel - 1);
+            if (YandexGame.auth)
+                YandexGame.NewLeaderboardScores("topPlayers1", YandexGame.savesData.currentLevel - 1);
             GlobalEvents.SendLevelEnd(animIndex);
         }
     }

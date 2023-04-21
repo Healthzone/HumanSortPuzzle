@@ -142,7 +142,7 @@ public class FlaskController : MonoBehaviour
         bot.GetComponent<NavMeshAgent>().SetDestination(position.position);
         //if (bot.GetComponent<NavMeshAgent>().velocity.magnitude == 0)
         bot.GetComponent<Animator>().SetBool("IsRunning", true);
-        GlobalEvents.SendBotMoveStarts(1);
+        //GlobalEvents.SendBotMoveStarts(1);
         CheckFilledFlask();
 
         return Bots.Count == 4 ? false : true;
