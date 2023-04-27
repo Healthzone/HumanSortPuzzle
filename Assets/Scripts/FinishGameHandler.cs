@@ -7,6 +7,8 @@ using YG;
 
 public class FinishGameHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject canvasChanger;
+
     private int flaskWithColorCount;
     private int currentFilledFlaskCount = 0;
 
@@ -34,6 +36,7 @@ public class FinishGameHandler : MonoBehaviour
             if (YandexGame.auth)
                 YandexGame.NewLeaderboardScores("topPlayers1", YandexGame.savesData.currentLevel - 1);
             GlobalEvents.SendLevelEnd(animIndex);
+            canvasChanger.SetActive(false);
         }
     }
 

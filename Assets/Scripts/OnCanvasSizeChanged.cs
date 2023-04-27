@@ -8,15 +8,11 @@ public class OnCanvasSizeChanged : MonoBehaviour
     [SerializeField] private CameraInitializer cameraInitializer;
     [SerializeField] private bool isGameStarted;
 
-    private void Start()
-    {
-        GlobalEvents.OnFlasksInitialized.AddListener(GameStarts);
-    }
-
-    private void GameStarts()
+    private void OnEnable()
     {
         isGameStarted = true;
     }
+
     private void OnRectTransformDimensionsChange()
     {
         if (isGameStarted && cameraInitializer.Camera != null)

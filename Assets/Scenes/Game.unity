@@ -332,7 +332,7 @@ MonoBehaviour:
   flaskRowCount: 5
   groundPrefab: {fileID: 755424215410949054, guid: a80048aae45336f49a58d69d67d61f1d,
     type: 3}
-  flaskPrefab: {fileID: 1545186171737605871, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
+  flaskPrefab: {fileID: 7343704954969212005, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
     type: 3}
   offsetX: 2.5
   offsetY: 0.25
@@ -340,6 +340,7 @@ MonoBehaviour:
   spawnedFlasks: []
   loadingPanel: {fileID: 1169261343}
   addNewFlaskBtn: {fileID: 1705957367}
+  canvasChanger: {fileID: 1279792370}
 --- !u!114 &95264916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +394,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cb239ad55903d814b83c59c4e8133cdb, type: 2}
   - {fileID: 2100000, guid: bfea5cce0a3f21d4eab8212a8d42c214, type: 2}
   - {fileID: 2100000, guid: f02fa84c4f6503242a5e13d7dc1069c4, type: 2}
+  instantitatedMaterials: []
 --- !u!114 &95264919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f297839d36e334f86796b93849766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasChanger: {fileID: 1279792370}
 --- !u!114 &95264920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,7 +1006,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -3323,6 +3326,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172859617}
   m_CullTransparentMesh: 1
+--- !u!1 &1279792370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279792372}
+  - component: {fileID: 1279792371}
+  m_Layer: 0
+  m_Name: CanvasChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1279792371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279792370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3cdb220fd3bd46428151d3045f5cd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraInitializer: {fileID: 95264917}
+  isGameStarted: 0
+--- !u!4 &1279792372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279792370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1284676420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5456,7 +5505,6 @@ GameObject:
   - component: {fileID: 2139280611}
   - component: {fileID: 2139280612}
   - component: {fileID: 2139280613}
-  - component: {fileID: 2139280614}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5658,17 +5706,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviewPanel: {fileID: 910175155}
---- !u!114 &2139280614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139280602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cdb220fd3bd46428151d3045f5cd17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraInitializer: {fileID: 95264917}
-  isGameStarted: 0

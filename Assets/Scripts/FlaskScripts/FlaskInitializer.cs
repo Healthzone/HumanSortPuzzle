@@ -25,6 +25,9 @@ public class FlaskInitializer : MonoBehaviour
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private GameObject addNewFlaskBtn;
 
+    [Space(15)]
+    [SerializeField] private GameObject canvasChanger;
+
     private List<Vector3> calculatedPositions = new List<Vector3>();
 
     private GameObject spawnedGround;
@@ -93,6 +96,7 @@ public class FlaskInitializer : MonoBehaviour
         }
         InstantiateFlask(isNeedToAddNewFlask);
         GlobalEvents.SendFlaskInitialized();
+        canvasChanger.SetActive(true);
         StartInitializingCamera(spawnedFlasks);
         BuildNavMeshPath(spawnedGround);
         EnableNavMeshAgentsOnBots();
