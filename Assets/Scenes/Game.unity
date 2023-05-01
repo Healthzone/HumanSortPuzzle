@@ -332,7 +332,7 @@ MonoBehaviour:
   flaskRowCount: 5
   groundPrefab: {fileID: 755424215410949054, guid: a80048aae45336f49a58d69d67d61f1d,
     type: 3}
-  flaskPrefab: {fileID: 7343704954969212005, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
+  flaskPrefab: {fileID: 8443285679954219323, guid: 2d3fee74ce46bb2489b9b2965ba0bf96,
     type: 3}
   offsetX: 2.5
   offsetY: 0.25
@@ -1005,8 +1005,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
-  m_Antialiasing: 1
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
