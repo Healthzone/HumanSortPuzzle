@@ -1,6 +1,6 @@
 # HumanSortPuzzle
 
-The core gameplay of the is a sorting colors into flasks.
+The core gameplay of the game is a sorting colors into flasks.
 Game made with Unity.
 Works as WebGL game.
 
