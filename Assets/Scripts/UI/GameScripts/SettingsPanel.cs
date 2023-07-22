@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsPanel : MonoBehaviour
 {
@@ -23,5 +24,10 @@ public class SettingsPanel : MonoBehaviour
         SettingsPanelGameObject.SetActive(false);
         BottomPanelGameObject.SetActive(true);
         TopPanelGameObject.SetActive(true);
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
