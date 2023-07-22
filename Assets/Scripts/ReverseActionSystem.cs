@@ -8,7 +8,7 @@ using YG.Example;
 
 public class ReverseActionSystem : MonoBehaviour
 {
-    private const int listSize = 5;
+    private const int listSize = 6;
     private LinkedList<ReverseElement> _reverseElements = new LinkedList<ReverseElement>();
 
     [Header("Reverse action sprites")]
@@ -19,7 +19,7 @@ public class ReverseActionSystem : MonoBehaviour
     [SerializeField] private Sprite reverse0Action;
     [SerializeField] private Image imageReverseAction;
 
-    private int reverseActionsCount = 2;
+    private int reverseActionsCount = 3;
     private bool watchedAds;
 
     private void OnEnable() => YandexGame.RewardVideoEvent += ReverseRewarded;
@@ -104,8 +104,8 @@ public class ReverseActionSystem : MonoBehaviour
     }
     public void ResetReverseActionCount()
     {
-        reverseActionsCount = 2;
-        imageReverseAction.sprite = reverse2Action;
+        reverseActionsCount = 3;
+        imageReverseAction.sprite = reverse3Action;
         imageReverseAction.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
         _reverseElements.Clear();
         watchedAds = false;
