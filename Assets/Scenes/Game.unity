@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 95264921}
   - component: {fileID: 95264922}
   - component: {fileID: 95264923}
+  - component: {fileID: 95264924}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -476,6 +477,25 @@ MonoBehaviour:
   addNewFlaskButton: {fileID: 1705957369}
   isNewFlaskAdded: 0
   currentrlyMovingBotsCount: 0
+--- !u!114 &95264924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95264912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6662e03cda5dad34ebab8d97e84881e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDPI: 0.95
+  minDPI: 0.55
+  dampen: 0.02
+  maxFps: 75
+  minFps: 55
+  renderScale: 1
+  refreshResolutionTime: 1
 --- !u!1 &180988549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1032,7 @@ MonoBehaviour:
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
@@ -1753,7 +1774,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594110844}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4030,7 +4051,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 157.1678, y: 69.431}
+  m_SizeDelta: {x: 192, y: 69.431}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1462990719
 MonoBehaviour:
@@ -4061,8 +4082,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278253311
+  m_fontColor: {r: 1, g: 0.9647059, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4079,8 +4100,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
