@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07fd4decde737a2498142277dfc8cafd
+guid: 2fbcc60378b655a49aac264ca687628d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 52
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,24 +119,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 256
-    resizeAlgorithm: 1
-    textureFormat: 50
-    textureCompression: 1
-    compressionQuality: 100
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 1
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AddFlask
+      name: AddNewFlask
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70e47d37b59e5164e81ed9bd19a26a8e
-      internalID: -1420563161
+      spriteID: 687994c636c663a439190c69a62b521d
+      internalID: -1876466824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Restart
+      name: ResetBot
       rect:
         serializedVersion: 2
         x: 207
@@ -158,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5134e2464aa828b43af6649809a40ef1
-      internalID: 1390816506
+      spriteID: 712f9cd3a51f3d24ab24b9041de4b2db
+      internalID: -911991030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReverseZeroAdd
+      name: Reverse0_Ads
       rect:
         serializedVersion: 2
-        x: 400
+        x: 393
         y: 435
-        width: 215
+        width: 225
         height: 197
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86dc86ed91ea5904c99b072e99ffc28a
-      internalID: -568969708
+      spriteID: f32f1be8481866b479417ee46ceda46a
+      internalID: 641467114
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a151e7a87393f5442abd2cfb865df7e2
-      internalID: -468366641
+      spriteID: 240f572c6af13ec4eb71a9554bbcdf31
+      internalID: -1263638658
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4015cebd4f24974d9d12d92e3fceb81
-      internalID: 1214327748
+      spriteID: 478edd6e659175641b2a6cf0bdc752c0
+      internalID: 445489444
       vertices: []
       indices: 
       edges: []
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 554313360b331d04085ca659eb94655a
-      internalID: -1025864905
+      spriteID: 60d60cf1db20f244eaecbb25e78b9b05
+      internalID: 1442722267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Reverse0
+      name: Reverse0_NoAds
       rect:
         serializedVersion: 2
         x: 3
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f058a331614fe4f8ff21d700fdb705
-      internalID: -1140845155
+      spriteID: 270f8290af7c7984683faabd70d684d2
+      internalID: -1515563399
       vertices: []
       indices: 
       edges: []
@@ -272,7 +272,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: c71f7bfa456165f4ba9143e563e72933
     internalID: 0
     vertices: []
     indices: 
@@ -280,13 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AddFlask: -1420563161
-      Restart: 1390816506
-      Reverse0: -1140845155
-      Reverse1: -468366641
-      Reverse2: 1214327748
-      Reverse3: -1025864905
-      ReverseZeroAdd: -568969708
+      AddNewFlask: -1876466824
+      ResetBot: -911991030
+      Reverse0_Ads: 641467114
+      Reverse0_NoAds: -1515563399
+      Reverse1: -1263638658
+      Reverse2: 445489444
+      Reverse3: 1442722267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
